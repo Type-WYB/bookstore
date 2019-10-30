@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>loginc</title>
+    <title>logincwyb</title>
 </head>
 <body>
 ${Book.get(0).name}
