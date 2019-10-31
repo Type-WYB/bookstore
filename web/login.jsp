@@ -7,8 +7,11 @@
 <html>
 <head>
     <title>loginc</title>
+    <script src="js/my.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="css/my.css"/>
 </head>
 <body>
+<img src="images/a1.jpg" id="image1" onclick="onclik()">
 ${Book.get(0).name}<hr/>
 
 <c:forEach begin="0" end="5" var="i" >${i}</c:forEach><hr/>
