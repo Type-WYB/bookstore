@@ -9,6 +9,9 @@
     <title>login</title>
     <script src="js/my.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="css/my.css"/>
+    <script src="js/vue-router.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vue-resource.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <img src="images/a1.jpg" id="image1" onclick="onclik()">
