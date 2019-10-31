@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>loginc</title>
+    <title>login</title>
     <script src="js/my.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="css/my.css"/>
 </head>
