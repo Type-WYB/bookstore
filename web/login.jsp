@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>logincwyb</title>
+    <title>loginc</title>
 </head>
 <body>
 ${Book.get(0).name}<hr/>
