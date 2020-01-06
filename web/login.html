@@ -1,216 +1,213 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link href="css/animate.min.css" rel="stylesheet" type="text/css" /><!-- Animation库 -->
-		<link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css" /><!-- Css重置 -->
-		<link href="css/iview.css" rel="stylesheet" type="text/css" /><!-- iview组件库 -->
-		<link href="favicon.ico" type="image/x-icon" rel="icon" />
-		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
-		<script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript" charset="utf-8"></script><!-- 解决前缀问题 -->
-		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
-		<style type="text/css">
-			body {
-				background: url(images/login/desk.jpeg) no-repeat;
-			}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
+    <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
+    <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
+    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
+    <script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript"
+            charset="utf-8"></script><!-- 解决前缀问题 -->
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        body {
+            background: url(images/login/desk.jpeg) no-repeat;
+        }
 
-			@keyframes rotating {
-				0% {
-					transform: rotateY(0deg);
-				}
+        @keyframes rotating {
+            0% {
+                transform: rotateY(0deg);
+            }
 
-				100% {
-					transform: rotateY(360deg);
-				}
-			}
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
 
-			/* //最外层div */
-			.stage-area {
-				perspective: 800px;
-				min-height: 100%;
-				perspective-origin: center 30%;
-			}
+        /* //最外层div */
+        .stage-area {
+            perspective: 800px;
+            min-height: 100%;
+            perspective-origin: center 30%;
+        }
 
-			/* 图片div */
-			.container {
-				transform-style: preserve-3d;
-				width: 160px;
-				position: absolute;
-				top: 200px;
-				left: 1350px;
-				margin-top: 80px;
-				margin-left: -80px;
-				animation-name: rotating;
-				animation-duration: 10s;
-				animation-timing-function: linear;
-				animation-iteration-count: infinite;
-			}
+        /* 图片div */
+        .container {
+            transform-style: preserve-3d;
+            width: 160px;
+            position: absolute;
+            top: 200px;
+            left: 1350px;
+            margin-top: 80px;
+            margin-left: -80px;
+            animation-name: rotating;
+            animation-duration: 10s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
 
-			.container:hover {
-				animation-play-state: paused;
-			}
+        .container:hover {
+            animation-play-state: paused;
+        }
 
-			.container img {
-				border: 3px solid rgba(255, 255, 255, .5);
-			}
+        .container img {
+            border: 3px solid rgba(255, 255, 255, .5);
+        }
 
-			img {
-				max-width: 100%;
-				position: absolute;
-			}
+        img {
+            max-width: 100%;
+            position: absolute;
+        }
 
-			.container a:nth-child(1) img {
-				transform: rotateY(0deg) translateZ(250px);
-				transform: rotateY(0deg);
-			}
+        .container a:nth-child(1) img {
+            transform: rotateY(0deg);
+        }
 
-			.container a:nth-child(2) img {
-				transform: rotateY(40deg) translateZ(250px);
-				transform: rotateY(40deg);
-			}
+        .container a:nth-child(2) img {
+            transform: rotateY(40deg);
+        }
 
-			.container a:nth-child(3) img {
-				transform: rotateY(80deg) translateZ(250px);
-				transform: rotateY(80deg);
-			}
+        .container a:nth-child(3) img {
+            transform: rotateY(80deg);
+        }
 
-			.container a:nth-child(4) img {
-				transform: rotateY(120deg) translateZ(250px);
-				transform: rotateY(120deg);
-			}
+        .container a:nth-child(4) img {
+            transform: rotateY(120deg);
+        }
 
-			.container a:nth-child(5) img {
-				transform: rotateY(160deg) translateZ(250px);
-				transform: rotateY(160deg);
-			}
+        .container a:nth-child(5) img {
+            transform: rotateY(160deg);
+        }
 
-			.container a:nth-child(6) img {
-				transform: rotateY(200deg) translateZ(250px);
-				transform: rotateY(200deg);
-			}
+        .container a:nth-child(6) img {
+            transform: rotateY(200deg);
+        }
 
-			.container a:nth-child(7) img {
-				transform: rotateY(240deg) translateZ(250px);
-				transform: rotateY(240deg);
-			}
+        .container a:nth-child(7) img {
+            transform: rotateY(240deg);
+        }
 
-			.wx-block {
-				margin: 50px auto auto 150px;
-				color: #CCCC66;
-			}
+        .wx-block {
+            margin: 50px auto auto 150px;
+            color: #CCCC66;
+        }
 
-			.login-form {
-				margin: 50px auto auto 750px;
-				width: 400px;
-				padding: 20px;
-			}
+        .login-form {
+            margin: 50px auto auto 750px;
+            width: 400px;
+            padding: 20px;
+        }
 
-			.title-font {
-				color: #CCCC66;
-				margin: 50px auto auto 150px;
-				font-size: 26px;
-			}
-			.lg-bt{
-				width: 178px;
-			}
-			.reg-a{
-				width: 70px;
-				padding: 20px;
-				margin-left: 79px;
-			}
-			.forget-a{
-				width: 70px;
-				padding: 20px;
-				margin-left: 3px;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="login_app">
-			<div class="wx-block">
-				<p>微信扫码登录:</p><br/>
-				<img src="images/login/wx.JPG">
-			</div>
-			<div class="stage-area">
-				<div class="container">
-					<a href="#"><img src="images/login/1.jpeg"></a>
-					<a href="#"><img src="images/login/2.jpeg" /></a>
-					<a href="#"><img src="images/login/3.jpeg" /></a>
-					<a href="#"><img src="images/login/4.jpeg" /></a>
-					<a href="#"><img src="images/login/5.jpeg" /></a>
-					<a href="#"><img src="images/login/6.jpeg" /></a>
-					<a href="#"><img src="images/login/7.jpeg" /></a>
-				</div>
-			</div>
-			<div class="login-form">
-				<label class="title-font">登录</label></br></br>
-				<i-form ref="formCustom" :model="formCustom" :rules="ruleCustom">
-					<form-item prop="user">
-						<i-input type="text" v-model="formCustom.user" placeholder="用户名">
-							<Icon type="ios-person-outline" slot="prepend"></Icon>
-						</i-input>
-					</form-item>
-					<form-item prop="password">
-						<i-input type="password" v-model="formCustom.password" placeholder="密码">
-							<Icon type="ios-lock-outline" slot="prepend"></Icon>
-						</i-input>
-					</form-item>
-					<a href="regist.html" class="reg-a">立即注册</a>|
-					<a href="search.html" class="forget-a">忘记密码?</a><br/><br/>
-					<form-item>
-						<i-button type="primary" @click="handleSubmit('formCustom')" class="lg-bt">登录</i-button>
-						<i-button type="warning" @click="resHome()" class="lg-bt">返回</i-button>
-					</form-item>
-				</i-form>
-			</div>
-		</div>
-		<script>
-			new Vue({
-				el: '#login_app',
-				data() {
-					return {
-						formCustom: {
-							user: '',
-							password: ''
-						},
-						ruleCustom: {
-							user: [{
-								required: true,
-								message: '请输入用户名',
-								trigger: 'blur'
-							}],
-							password: [{
-									required: true,
-									message: '请输入密码',
-									trigger: 'blur'
-								},
-								{
-									type: 'string',
-									min: 6,
-									message: '密码长度不能小于6',
-									trigger: 'blur'
-								}
-							]
-						}
-					}
-				},
-				methods: {
-					handleSubmit(name) {
-						this.$refs[name].validate((valid) => {
-							if (valid) {
-								this.$Message.success('登录成功!');
-							} else {
-								this.$Message.error('登录失败!');
-							}
-						})
-					},
-					resHome() {
-						location.href = "home.html";
-					}
-				}
-			})
-		</script>
-	</body>
+        .title-font {
+            color: #CCCC66;
+            margin: 50px auto auto 150px;
+            font-size: 26px;
+        }
+
+        .lg-bt {
+            width: 178px;
+        }
+
+        .reg-a {
+            width: 70px;
+            padding: 20px;
+            margin-left: 79px;
+        }
+
+        .forget-a {
+            width: 70px;
+            padding: 20px;
+            margin-left: 3px;
+        }
+    </style>
+</head>
+<body>
+<div id="login_app">
+    <div class="wx-block">
+        <p>微信扫码登录:</p><br/>
+        <img src="images/login/wx.JPG" />
+    </div>
+    <div class="stage-area">
+        <div class="container">
+            <a href="#"><img src="images/login/1.jpeg"/></a>
+            <a href="#"><img src="images/login/2.jpeg"/></a>
+            <a href="#"><img src="images/login/3.jpeg"/></a>
+            <a href="#"><img src="images/login/4.jpeg"/></a>
+            <a href="#"><img src="images/login/5.jpeg"/></a>
+            <a href="#"><img src="images/login/6.jpeg"/></a>
+            <a href="#"><img src="images/login/7.jpeg"/></a>
+        </div>
+    </div>
+    <div class="login-form">
+        <label class="title-font">登录</label></br></br>
+        <i-form ref="formCustom" :model="formCustom" :rules="ruleCustom">
+            <form-item prop="user">
+                <i-input type="text" v-model="formCustom.user" placeholder="用户名">
+                    <Icon type="ios-person-outline" slot="prepend"></Icon>
+                </i-input>
+            </form-item>
+            <form-item prop="password">
+                <i-input type="password" v-model="formCustom.password" placeholder="密码">
+                    <Icon type="ios-lock-outline" slot="prepend"></Icon>
+                </i-input>
+            </form-item>
+            <a href="regist.html" class="reg-a">立即注册</a>|
+            <a href="search.html" class="forget-a">忘记密码?</a><br/><br/>
+            <form-item>
+                <i-button type="primary" @click="handleSubmit('formCustom')" class="lg-bt">登录</i-button>
+                <i-button type="warning" @click="resHome()" class="lg-bt">返回</i-button>
+            </form-item>
+        </i-form>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#login_app',
+        data() {
+            return {
+                formCustom: {
+                    user: '',
+                    password: ''
+                },
+                ruleCustom: {
+                    user: [{
+                        required: true,
+                        message: '请输入用户名',
+                        trigger: 'blur'
+                    }],
+                    password: [{
+                        required: true,
+                        message: '请输入密码',
+                        trigger: 'blur'
+                    },
+                        {
+                            type: 'string',
+                            min: 6,
+                            message: '密码长度不能小于6',
+                            trigger: 'blur'
+                        }
+                    ]
+                }
+            }
+        },
+        methods: {
+            handleSubmit(name) {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('登录成功!');
+                    } else {
+                        this.$Message.error('登录失败!');
+                    }
+                })
+            },
+            resHome() {
+                location.href = "home.html";
+            }
+        }
+    })
+</script>
+</body>
 </html>
