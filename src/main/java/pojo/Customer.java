@@ -8,8 +8,8 @@ package pojo;
 public class Customer {
     private int id;
     private String name;
-    private String Password;
-    private String Email;
+    private String password;
+    private String email;
 
     public int getId() {
         return id;
@@ -28,18 +28,18 @@ public class Customer {
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 }

@@ -4,20 +4,5 @@
 <mapper namespace="mapper.CartItemMapper">
 
 
-    <resultMap id="resultUsers" type="book">
-        <id property="bid" column="bid" />
-        <result property="name" column="name" />
-        <collection property="users" ofType="pojo.User" >
-            <id property="uid" column="uid"></id>
-            <result property="name" column="uname"></result>
-        </collection>
-    </resultMap>
-
-    <select id="getAlluserByBid" parameterType="int" resultMap="resultUsers">
-	   select  * from getAlluserByBid where bid=#{bid}
-	</select>
-    <select id="getAllBook" resultType="book">
-        select * from book
-    </select>
 
 </mapper>

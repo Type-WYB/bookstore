@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.CartItemMapper">
+<mapper namespace="mapper.OrderItemMapper">
 
 
-    <resultMap id="resultUsers" type="book">
-        <id property="bid" column="bid" />
-        <result property="name" column="name" />
-        <collection property="users" ofType="pojo.User" >
-            <id property="uid" column="uid"></id>
-            <result property="name" column="uname"></result>
-        </collection>
-    </resultMap>
 
-    <select id="getAlluserByBid" parameterType="int" resultMap="resultUsers">
-	   select  * from getAlluserByBid where bid=#{bid}
-	</select>
-    <select id="getAllBook" resultType="book">
-        select * from book
-    </select>
 
 </mapper>

@@ -16,29 +16,10 @@
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>/**/*.xml</include>
+                    <include>**/*.xml</include>
                 </includes>
             </resource>
         </resources>
-        <!-- 配置Tomcat8插件 -->
-        <plugins>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <!-- 控制 tomcat 端口号 -->
-                    <port>80</port>
-                    <!-- 项目发布到 tomcat 后的名称 -->
-                    <!-- / 相当于把项目发布名称为 ROOT -->
-                    <!-- /abc -->
-                    <path>/abc</path>
-                    <username>root</username>
-                    <password>root</password>
-                    <url>http://192.168.31.70:8080/manager/text</url>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
     <!--版本-->
     <properties>
