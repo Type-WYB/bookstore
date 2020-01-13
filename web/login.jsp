@@ -15,7 +15,7 @@
 </head>
 <body>
 <img src="images/a1.jpg" id="image1" onclick="onclik()">
-${c.email}
+${c.email}testtttttt
 ${Book.get(0).name}<hr/>
 <hr/>
 <c:forEach begin="0" end="5" var="i" >${i}</c:forEach><hr/>
