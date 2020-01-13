@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
+    <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
+    <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
+    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
+    <script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript"
+            charset="utf-8"></script><!-- 解决前缀问题 -->
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        body {
+            background: url(./images/regist/bg.jpeg);
+        }
+
+        .form-style {
+            margin: 80px auto auto 500px;
+            border: 1px solid;
+            height: 500px;
+            width: 450px;
+            padding: 20px;
+        }
+
+        .btn {
+            width: 124px;
+        }
+
+        .input-style {
+            width: 250px;
+        }
+
+        .regist-title {
+            margin: 5px auto auto 180px;
+            font-size: 26px;
+
+        }
+    </style>
+</head>
+<body>
+<div id="regist_app">
+    <div class="form-style">
+        <label class="regist-title">注册</label></br></br>
+        <i-form ref="formCustom" :model="formCustom" :rules="ruleCustom" :label-width="100">
+            <form-item label="用户名" prop="user">
+                <i-input type="text" v-model="formCustom.user" placeholder="请输入用户名" class="input-style"></i-input>
+            </form-item>
+            <form-item label="密码" prop="passwd">
+                <i-input type="password" v-model="formCustom.passwd" placeholder="请输入密码" class="input-style"></i-input>
+            </form-item>
+            <form-item label="确认密码" prop="passwdCheck">
+                <i-input type="password" v-model="formCustom.passwdCheck" placeholder="请再次输入密码"
+                         class="input-style"></i-input>
+            </form-item>
+            <form-item label="E-mail" prop="mail">
+                <i-input v-model="formCustom.mail" placeholder="例:123@qq.com" class="input-style"></i-input>
+            </form-item>
+            <form-item prop="check">
+                <checkbox-group v-model="formCustom.check">
+                    <Checkbox label="已阅读并同意书虫相关协议"></Checkbox>
+                </checkbox-group>
+            </form-item>
+            <form-item>
+                <i-button type="primary" @click="handleSubmit('formCustom')" class="btn">确认注册</i-button>
+                <i-button type="warning" @click="resLg()" class="btn">返回</i-button>
+            </form-item>
+        </i-form>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#regist_app',
+        data() {
+
+            const validatePass = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请输入密码！'));
+                } else {
+                    if (this.formCustom.passwdCheck !== '') {
+                        // 对第二个密码框单独验证
+                        this.$refs.formCustom.validateField('passwdCheck');
+                    }
+                    callback();
+                }
+            };
+            const validatePassCheck = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请再次输入密码！'));
+                } else if (value !== this.formCustom.passwd) {
+                    callback(new Error('两次密码输入不一致!'));
+                } else {
+                    callback();
+                }
+            };
+
+
+            return {
+                formCustom: {
+                    user: '',
+                    passwd: '',
+                    passwdCheck: '',
+                    mail: '',
+                    check: []
+                },
+                ruleCustom: {
+                    user: [{
+                        required: true,
+                        message: '请输入用户名！',
+                        trigger: 'blur'
+                    }],
+                    passwd: [{
+                        required: true,
+                        validator: validatePass,
+                        trigger: 'blur'
+                    }],
+                    passwdCheck: [{
+                        required: true,
+                        validator: validatePassCheck,
+                        trigger: 'blur'
+                    }],
+                    mail: [{
+                        required: true,
+                        message: '请输入E-mail地址!',
+                        trigger: 'blur'
+                    },
+                        {
+                            type: 'email',
+                            message: 'E-mail地址格式不正确!',
+                            trigger: 'blur'
+                        }
+                    ],
+                    check: [{
+                        required: true,
+                        type: 'array',
+                        min: 1,
+                        message: '确认注册请勾选同意!',
+                        trigger: 'change'
+                    }
+                    ],
+                }
+            }
+        },
+        methods: {
+            handleSubmit(name) {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('注册成功，请返回登录界面进行登录');
+                    } else {
+                        this.$Message.error('注册失败!');
+                    }
+                })
+            },
+            resLg() {
+                location.href = "home.html";
+            }
+        }
+    })
+</script>
+</body>
+</html>
