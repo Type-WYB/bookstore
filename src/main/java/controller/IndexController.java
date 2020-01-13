@@ -27,4 +27,5 @@ public class IndexController {
         modelMap.addAttribute("user",user1);
         return user;
     }
+
 }
