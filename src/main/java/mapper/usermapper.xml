@@ -29,4 +29,10 @@
 		FROM user
 		WHERE uid=#{uuid}
 	</select>
+
+    <select id="login" resultMap="resultUser">
+        select * from user where name=#{name} and password=#{password}
+    </select>
+
+
 </mapper>
