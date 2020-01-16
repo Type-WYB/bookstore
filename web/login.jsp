@@ -55,9 +55,9 @@
                     password: $("#password").val()
                 }),
                 success: function (result) {
-                    if(result.ok==1){
+                    if (result.ok == 1) {
                         alert(result.msg);
-                    }else {
+                    } else {
                         alert(result.msg);
                     }
                 },
