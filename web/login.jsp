@@ -7,34 +7,6 @@
     </script>
 </head>
 <body>
-<%--${Book.get(0).name}--%>
-<%--<hr/>--%>
-
-<%--<c:forEach begin="0" end="5" var="i">${i}</c:forEach>--%>
-<%--<hr/>--%>
-
-<%--<c:forEach var="x" varStatus="xs" items="${Book}">--%>
-<%--${x.name}++${xs.count}--%>
-<%--</c:forEach>--%>
-<%--<hr/>--%>
-
-<%--${requestScope.get("user").name}--%>
-<%--<hr/>--%>
-<%--${requestScope.get("user").uid}--%>
-<%--<hr/>--%>
-
-<%--<%--%>
-<%--pageContext.setAttribute("tmp", "tmp", pageContext.PAGE_SCOPE);--%>
-<%--%>--%>
-
-<%--<c:if test="${user.name=='user'}">if==ture</c:if>--%>
-
-<%--${tmp}--%>
-<%--<hr/>--%>
-<%--${pageContext.getAttribute("tmp")}--%>
-<%--<hr/>--%>
-<%--${pageScope.tmp}--%>
-<%--<hr/>--%>
 <form>
     用户名：<input type="text" name="name" id="name"><br>
     密码：<input type="password" name="password" id="password"><br>

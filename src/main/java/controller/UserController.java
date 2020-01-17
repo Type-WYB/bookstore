@@ -19,12 +19,6 @@ public class UserController {
     @RequestMapping("/login")
     @ResponseBody
     public ResultInfo login(@RequestBody User user) {
-//        System.out.println("用户名："+user.getName()+"->"+"密码："+user.getPassword());
-//        if(user.getName().equals("admin")&&user.getPassword().equals("admin")){
-//            return new ResultInfo(1, "登录成功");
-//        }else {
-//            return new ResultInfo(0,"登录失败");
-//        }
         // 数据库调用
         User checkedUser = userService.login(user);
         if (checkedUser != null) {
