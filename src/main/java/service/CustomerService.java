@@ -1,6 +1,5 @@
 package service;
 
-import pojo.Book;
 import pojo.Customer;
 
 import java.util.List;
