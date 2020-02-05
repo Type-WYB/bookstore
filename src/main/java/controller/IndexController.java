@@ -13,7 +13,6 @@ import javax.annotation.Resource;
 
 @Controller
 public class IndexController {
-
     @Resource
     private CustomerServiceImpl customerServiceImpl;
     @RequestMapping(value = "/login",method = RequestMethod.GET)
@@ -23,7 +22,7 @@ public class IndexController {
         modelMap.addAttribute("c",c);
         ModelAndView user=new ModelAndView("login");
 
-        modelMap.addAttribute(" user",c);
+        modelMap.addAttribute("user",c);
         return user;
     }
 
