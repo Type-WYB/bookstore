@@ -13,7 +13,6 @@ public class Order {
     private String state;
     private String zip;
     private String phone;
-    private String status;
 
     public int getId() {
         return id;
@@ -85,13 +84,5 @@ public class Order {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

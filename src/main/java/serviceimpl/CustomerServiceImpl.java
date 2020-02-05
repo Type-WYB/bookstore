@@ -1,15 +1,11 @@
 package serviceimpl;
 
-import mapper.BookMapper;
 import mapper.CustomerMapper;
 import org.springframework.stereotype.Service;
-import pojo.Book;
 import pojo.Customer;
-import service.BookService;
 import service.CustomerService;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 
 @Service
