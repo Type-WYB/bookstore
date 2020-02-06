@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>书虫欢迎您</title>
+    <script src="js/head.js"></script>
+    <style type="text/css">
+        .body-style {
+            background: url(images/first/first.jpeg) no-repeat;
+        }
+
+        .font {
+            color: white;
+            margin: 250px 600px auto auto;
+            text-align: center;
+            font-size: 20px;
+
+        }
+
+        .right-href {
+            font-size: 100px;
+            float: right;
+            color: whitesmoke;
+            text-decoration: none;
+            text-align: center;
+            margin: 20px 0 auto auto;
+        }
+    </style>
+</head>
+<body class="body-style">
+<div class="animated fadeInDown font">欢迎您，祝您购书愉快☺</div>
+<a href="home.html" class="right-href">></a>
+<div id="main" style="width: 600px;height:400px;"></div>
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    var data = [];
+
+    for (var i = 0; i <= 360; i++) {
+        var t = i / 180 * Math.PI;
+        var r = Math.sin(2 * t) * Math.cos(2 * t);
+        data.push([r, i]);
+    }
+
+    option = {
+
+        legend: {
+            data: ['line']
+        },
+        polar: {
+            center: ['50%', '54%']
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        angleAxis: {
+            type: 'value',
+            startAngle: 0
+        },
+        radiusAxis: {
+            min: 0
+        },
+        series: [{
+            coordinateSystem: 'polar',
+            name: 'line',
+            type: 'line',
+            showSymbol: false,
+            data: data
+        }],
+        animationDuration: 4000
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>
