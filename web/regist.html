@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>注册</title>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
     <script src="js/head.js"></script>
     <style type="text/css">
         body {
@@ -139,10 +141,25 @@
             handleSubmit(name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('注册成功，请返回登录界面进行登录');
-                        console.log(this.$refs[name].model);
+                        var postdata = JSON.stringify({
+                            name: this.formCustom.user,
+                            password: this.formCustom.passwd,
+                            email: this.formCustom.mail
+                        });
+                        axios.post('/customer/register', postdata, {headers: {'Content-Type': 'application/json;charset=UTF-8'}}).then(function (res) {
+                            if (res.data.code === 1) {
+                                var b = confirm(res.data.msg);
+                                if(b){
+                                    window.location.href="login.html";
+                                }
+                            } else {
+                                alert(res.data.msg);
+                            }
+                        }).catch(function (reason) {
+                            console.log(reason);
+                        });
                     } else {
-                        this.$Message.error('注册失败!');
+                        this.$refs[name].error(res.data.msg);
                     }
                 })
             },

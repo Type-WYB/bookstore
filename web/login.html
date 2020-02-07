@@ -2,17 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title></title>
-    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
-    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
-    <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
-    <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
-    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
-    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
-    <script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript"
-            charset="utf-8"></script><!-- 解决前缀问题 -->
-    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
+    <title>登录</title>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/head.js"></script>
     <style type="text/css">
         body {
             background: url(images/login/desk.jpeg) no-repeat;
@@ -64,6 +57,7 @@
         }
 
         .container a:nth-child(1) img {
+
             transform: rotateY(0deg);
         }
 
@@ -129,7 +123,7 @@
 <div id="login_app">
     <div class="wx-block">
         <p>微信扫码登录:</p><br/>
-        <img src="images/login/wx.JPG" />
+        <img src="images/login/wx.JPG">
     </div>
     <div class="stage-area">
         <div class="container">
@@ -143,7 +137,7 @@
         </div>
     </div>
     <div class="login-form">
-        <label class="title-font">登录</label></br></br>
+        <label class="title-font">登录</label><br/><br/>
         <i-form ref="formCustom" :model="formCustom" :rules="ruleCustom">
             <form-item prop="user">
                 <i-input type="text" v-model="formCustom.user" placeholder="用户名">
@@ -163,6 +157,9 @@
             </form-item>
         </i-form>
     </div>
+
+</div>
+<div id="mpanel4" style="margin-top:50px;">
 </div>
 <script>
     new Vue({
@@ -176,7 +173,6 @@
                 ruleCustom: {
                     user: [{
                         required: true,
-                        type: 'string',
                         message: '请输入用户名',
                         trigger: 'blur'
                     }],
@@ -197,31 +193,33 @@
         },
         methods: {
             handleSubmit(name) {
-                this.$refs[name].validate(
-                    (valid)=>{
+                this.$refs[name].validate((valid) => {
                     if (valid) {
-                        axios({
-                            url:"http://localhost/login/login",
-                            method:"POST",
-                            data:{customername:this.formCustom.user,password:this.formCustom.password}
-                        }).then(res=>{
-                            var is=res.data.valid;
-                            if(is)
-                            {this.$Message.success('验证成功!');
-                            this.resHome();
-                            }
-                            else
-                                this.$Message.success('验证失败!');
+                        var postdata = JSON.stringify({
+                            name: this.formCustom.user,
+                            password: this.formCustom.password,
                         });
-
+                        axios.post('/customer/login', postdata, {headers: {'Content-Type': 'application/json;charset=UTF-8'}}).then(function (res) {
+                            if (res.data.code === 1) {
+                                var b = confirm(res.data.msg);
+                                if(b){
+                                    window.location.href="home.html";
+                                }
+                            } else {
+                                alert(res.data.msg);
+                            }
+                        }).catch(function (reason) {
+                            console.log(reason);
+                        });
                     } else {
-                        this.$Message.error('信息错误!');
+                        this.$Message.error('登录失败!');
                     }
-                });
+                })
             },
             resHome() {
                 location.href = "home.html";
             }
+
         }
     })
 </script>
