@@ -420,63 +420,16 @@
                         <!-- 图书方块 -->
                         <div>
                             <br/>
-                            <a href="#">
-                                <div class="wrapper first-wrapper" id="wrapper">&nbsp;&nbsp;
-                                    <img src="images/home/book/cz.jpeg" id="img1" class="book-img"/>
-                                    <p class="d1">语文&nbsp;九年级上册<br/>25元</p>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="wrapper next-wrapper" id="wrapper">&nbsp;&nbsp;
-                                    <img src="images/home/book/qt%20(18).jpeg" id="img2" class="book-img"/>
-                                    <p class="d1">拯救人类&nbsp;&nbsp;卷二<br/>45元</p>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="wrapper next-wrapper" id="wrapper">&nbsp;&nbsp;&nbsp;
-                                    <img src="images/home/book/dx(3).jpeg" id="img3" class="book-img"/>
-                                    <p class="d1">大学生职业规划<br/>35元</p>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="wrapper next-wrapper" id="wrapper">
-                                    <img src="images/home/book/dx.jpeg" id="img4" class="book-img"/>&nbsp;
-                                    <p class="d1">法律硕士联考<br/>35元</p>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="wrapper next-wrapper" id="wrapper">&nbsp;&nbsp;
-                                    <img src="images/home/book/gz.jpeg" id="img5" class="book-img"/>
-                                    <p class="d1">语文&nbsp;高中<br/>30元</p>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="wrapper first-wrapper line-wrapper" id="wrapper">
-                                    <img src="images/home/book/mz%20(2).jpeg" id="img6" class="book-img"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <p class="d1">永远的长征<br/>40元</p>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="wrapper next-wrapper line-wrapper" id="wrapper">
-                                    <img src="images/home/book/mz%20(3).jpeg" id="img7" class="book-img"/>&nbsp;
-                                    <p class="d1">西游记<br/>40元</p>
-                                </div>
-                            </a><a href="#">
-                            <div class="wrapper next-wrapper line-wrapper" id="wrapper">&nbsp;&nbsp;&nbsp;
-                                <img src="images/home/b ook/mz%20(4).jpeg" id="img8" class="book-img"/>
-                                <p class="d1">怒吼<br/>40元</p>
-                            </div>
-                        </a><a href="#">
-                            <div class="wrapper next-wrapper line-wrapper" id="wrapper">
-                                <img src="images/home/book/mz.jpeg" id="img9" class="book-img"/>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <p class="d1">白鹿原&nbsp;陈忠实<br/>40元</p>
-                            </div>
-                        </a><a href="#">
+
+                        <a href="#"  :key='item.id' v-for='item in books'>
                             <div class="wrapper next-wrapper line-wrapper" id="wrapper">&nbsp;&nbsp;
-                                <img src="images/home/book/qt%20(14).jpeg" id="img10" class="book-img"/>
-                                <p class="d1">平凡的世界<br/>40元</p>
+                                <img :src="item.image" id="img10" class="book-img"/>
+                                <p class="d1">{{item.name}}<br/>{{item.listprice}}元</p>
                             </div>
-                        </a></div>
+                        </a>
+
+
+                        </div>
                         <div class="up"><a href="#" class="up-ft">↑</a></div>
                         <div class="head-border"><img src="images/home/logo10.png" class="line-wrapper"/>
                             <img src="images/home/blank-photo.png" class="blank-photo"/>
