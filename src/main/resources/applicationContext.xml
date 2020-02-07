@@ -49,18 +49,14 @@
                                 <!--<property name="basePackage" value="mapper"></property>-->
                                 <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>-->
                                 <!--</bean>-->
-    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+
+
+
+
+    <bean id="customerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <!--sqlSessionFactory属性指定要用到的SqlSessionFactory实例-->
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
         <!--mapperInterface属性指定映射器接口，用于实现此接口并生成映射器对象-->
-        <property name="mapperInterface" value="mapper.UserMapper" />
+        <property name="mapperInterface" value="mapper.CustomerMapper" />
     </bean>
-
-    <bean id="bookMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <!--sqlSessionFactory属性指定要用到的SqlSessionFactory实例-->
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
-        <!--mapperInterface属性指定映射器接口，用于实现此接口并生成映射器对象-->
-        <property name="mapperInterface" value="mapper.BookMapper" />
-    </bean>
-
 </beans>
