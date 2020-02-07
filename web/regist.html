@@ -3,15 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>注册</title>
-    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
-    <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
-    <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
-    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
-    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
-    <script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript"
-            charset="utf-8"></script><!-- 解决前缀问题 -->
-    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/head.js"></script>
     <style type="text/css">
         body {
             background: url(./images/regist/bg.jpeg);
@@ -67,6 +59,7 @@
                 <i-button type="primary" @click="handleSubmit('formCustom')" class="btn">确认注册</i-button>
                 <i-button type="warning" @click="resLg()" class="btn">返回</i-button>
             </form-item>
+
         </i-form>
     </div>
 </div>
@@ -138,8 +131,7 @@
                         min: 1,
                         message: '确认注册请勾选同意!',
                         trigger: 'change'
-                    }
-                    ],
+                    }],
                 }
             }
         },
@@ -148,6 +140,7 @@
                 this.$refs[name].validate((valid) => {
                     if (valid) {
                         this.$Message.success('注册成功，请返回登录界面进行登录');
+                        console.log(this.$refs[name].model);
                     } else {
                         this.$Message.error('注册失败!');
                     }
