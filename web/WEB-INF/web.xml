@@ -5,8 +5,9 @@
          version="4.0">
     <display-name>bookstored</display-name>
 
+    <!--欢迎页面-->
     <welcome-file-list>
-        <welcome-file>/login</welcome-file>
+        <welcome-file>/first.html</welcome-file>
     </welcome-file-list>
 
     <context-param>
@@ -17,15 +18,6 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    
-    <welcome-file-list>
-        <welcome-file>/home.html</welcome-file>
-    </welcome-file-list>
-    
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.html</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -38,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 
 
