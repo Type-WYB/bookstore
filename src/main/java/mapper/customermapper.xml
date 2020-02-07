@@ -11,4 +11,7 @@
     <select id="selectById" parameterType="int" resultType="customer">
        SELECT * FROM customer WHERE `CustomerId` = #{id}
     </select>
+    <select id="isMatch" parameterType="String" resultType="customer">
+       SELECT * FROM customer WHERE `name` = #{name} and `password` = #{pwd}
+    </select>
 </mapper>

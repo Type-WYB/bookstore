@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>书虫</title>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
     <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
     <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
     <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
@@ -296,8 +297,8 @@
                     <div class="layout-nav">
                         <menu-item name="1">
                             <Icon type="ios-navigate"></Icon>
-                            <a href="login.html" class="head-a">
-                                登录</a>
+                            <a  @click='loginhandle()' class="head-a">
+                                {{name}}</a>
                         </menu-item>
                         <menu-item name="2">
                             <Icon type="ios-keypad"></Icon>
@@ -460,7 +461,7 @@
                                 </div>
                             </a><a href="#">
                             <div class="wrapper next-wrapper line-wrapper" id="wrapper">&nbsp;&nbsp;&nbsp;
-                                <img src="images/home/book/mz%20(4).jpeg" id="img8" class="book-img"/>
+                                <img src="images/home/b ook/mz%20(4).jpeg" id="img8" class="book-img"/>
                                 <p class="d1">怒吼<br/>40元</p>
                             </div>
                         </a><a href="#">
@@ -496,7 +497,29 @@
         el: '#home_app',
         data() {
             return {
+                name:"登录",
                 value2: 0
+            }
+        },
+        created(){
+            axios({
+                url:"http://localhost/login/getsession",
+                method:"POST",
+            }).then(res=>{
+                var name=res.data.name;
+            if(name=="");
+                else
+                    this.name=name;
+        });
+        },
+        methods:{
+            loginhandle(){
+           if(this.name!="登录"){
+               location.href = "login.html";
+           }else {
+               location.href = "detail.html";
+           }
+
             }
         }
     })

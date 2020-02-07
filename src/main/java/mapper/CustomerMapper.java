@@ -1,5 +1,6 @@
 package mapper;
 
+import org.apache.ibatis.annotations.Param;
 import pojo.Customer;
 
 /**
@@ -12,4 +13,5 @@ public interface CustomerMapper {
     void deleteCustomer(int id);
     void updateCustomer(Customer customer);
     Customer selectById(int id);
+    Customer isMatch(@Param("name") String name, @Param("pwd") String pwd);
 }

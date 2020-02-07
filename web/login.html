@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
     <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
     <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
     <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
@@ -175,6 +176,7 @@
                 ruleCustom: {
                     user: [{
                         required: true,
+                        type: 'string',
                         message: '请输入用户名',
                         trigger: 'blur'
                     }],
@@ -195,13 +197,27 @@
         },
         methods: {
             handleSubmit(name) {
-                this.$refs[name].validate((valid) => {
+                this.$refs[name].validate(
+                    (valid)=>{
                     if (valid) {
-                        this.$Message.success('登录成功!');
+                        axios({
+                            url:"http://localhost/login/login",
+                            method:"POST",
+                            data:{customername:this.formCustom.user,password:this.formCustom.password}
+                        }).then(res=>{
+                            var is=res.data.valid;
+                            if(is)
+                            {this.$Message.success('验证成功!');
+                            this.resHome();
+                            }
+                            else
+                                this.$Message.success('验证失败!');
+                        });
+
                     } else {
-                        this.$Message.error('登录失败!');
+                        this.$Message.error('信息错误!');
                     }
-                })
+                });
             },
             resHome() {
                 location.href = "home.html";

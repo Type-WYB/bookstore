@@ -15,11 +15,12 @@
     <!-- 视图解析 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/" />
-        <property name="suffix" value=".jsp" />
+        <property name="suffix" value=".html" />
     </bean>
     <!-- 静态资源 -->
     <mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
     <mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
     <mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
     <mvc:resources location="/files/" mapping="/files/**"></mvc:resources>
+
 </beans>
