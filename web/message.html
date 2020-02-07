@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>消息通知</title>
+    <script src="js/head.js"></script>
+    <style type="text/css" scoped>
+        .layout {
+            border: 1px solid #d7dde4;
+            background: #f5f7f9;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .layout-footer-center {
+            text-align: center;
+        }
+
+        .res {
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="message_app">
+    <div class="layout">
+        <Layout>
+            <Header :style="{ width: '100%'}">
+                <a href="home.html">
+                    <Icon type="md-arrow-back" class="res"/>
+                </a>
+
+            </Header>
+            <Divider orientation="left">message</Divider>
+            <Content :style="{margin: '8px 20px 0', background: '#fff', minHeight: '100px'}">
+
+                <i-table border :columns="columns7" :data="data6" height="539"></i-table>
+
+            </Content>
+            <Divider orientation="right">message</Divider>
+            <Footer class="layout-footer-center">2019-2020 &copy; 书虫</Footer>
+        </Layout>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#message_app',
+        data() {
+            return {
+                columns7: [{
+                    title: '序号',
+                    type: 'index',
+                    width: 80,
+                    align: 'center'
+                },
+                    {
+                        title: '时间',
+                        key: 'date',
+                        sortable: true,
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Icon', {
+                                    props: {
+                                        type: 'person'
+                                    }
+                                }),
+                                h('strong', params.row.date)
+                            ]);
+                        }
+                    },
+                    {
+                        title: '昵称',
+                        key: 'name'
+                    },
+                    {
+                        title: '内容',
+                        key: 'content'
+                    },
+                    {
+                        title: '操作',
+                        key: 'action',
+                        width: 150,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, '详情'),
+                                h('Button', {
+                                    props: {
+                                        type: 'error',
+                                        size: 'small'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.remove(params.index)
+                                        }
+                                    }
+                                }, '删除')
+                            ]);
+                        }
+                    }
+                ],
+                data6: [{
+                    date: '2016-10-06',
+                    name: 'Jon Snow',
+                    content: 'New York No. 1 Lake Park'
+                },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-04',
+                        name: 'Jon Snow',
+                        content: 'Sydney No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-01',
+                        name: 'Jon Snow',
+                        content: 'Ottawa No. 2 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    },
+                    {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    }, {
+                        date: '2016-10-05',
+                        name: 'Jon Snow',
+                        content: 'London No. 1 Lake Park'
+                    }
+                ]
+            }
+        },
+        methods: {
+            show(index) {
+                this.$Modal.info({
+                    title: '消息',
+                    content: `时间：${this.data6[index].date}<br>呢称：${this.data6[index].name}<br>内容：${this.data6[index].content}`
+                })
+            },
+            remove(index) {
+                this.data6.splice(index, 1);
+            }
+
+        }
+
+    })
+</script>
+</body>
+</html>
