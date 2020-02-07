@@ -3,7 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>书虫</title>
-    <script src="js/head.js"></script>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
+    <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
+    <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
+    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
+    <script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript"
+            charset="utf-8"></script><!-- 解决前缀问题 -->
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css" scoped>
         .layout {
             border: 1px solid #d7dde4;
@@ -11,6 +20,17 @@
             position: relative;
             border-radius: 4px;
             overflow: hidden;
+        }
+
+        .layout-logo {
+            width: 100px;
+            height: 30px;
+            background: #5b6270;
+            border-radius: 3px;
+            float: left;
+            position: relative;
+            top: 15px;
+            left: 20px;
         }
 
         .layout-nav {
@@ -48,6 +68,7 @@
             padding: 20px 0px;
             width: 234px;
             background: #CCCC66;
+
             height: 300px;
         }
 
@@ -55,6 +76,7 @@
             height: 42px;
             line-height: -1px;
             padding-left: 65px;
+
         }
 
         .aside-ul li:hover {
@@ -92,9 +114,27 @@
             background: #F5F5F5;
         }
 
+        .head {
+            list-style: none;
+            margin-left: 70%;
+        }
+
         .head-a {
             text-decoration: none;
             color: white;
+
+        }
+
+
+        .head-li {
+            width: 100px;
+            float: left;
+        }
+
+        .header-style {
+            width: 100%;
+            height: 20px;
+            background: #CCCC66;
         }
 
         .nav-li {
@@ -113,6 +153,7 @@
             color: #660033;
         }
 
+
         .inner-ul {
             display: none;
             margin: -16px auto auto -103px;
@@ -124,6 +165,8 @@
 
         .nav-li:hover ul {
             display: block;
+
+
         }
 
         .bg {
@@ -134,6 +177,7 @@
             border-radius: 50px;
             width: 60px;
             height: 60px;
+
         }
 
         .first-wrapper {
@@ -146,6 +190,15 @@
 
         .line-wrapper {
             margin-top: 20px;
+
+        }
+
+        .blank-line {
+            width: 180px;
+            height: 504px;
+            margin-left: 172px;
+            margin-top: 10px;
+
         }
 
         .blank-photo {
@@ -157,6 +210,7 @@
             width: 100%;
             height: 100px;
             background: #CCCC66;
+
         }
 
         .foot-img {
@@ -165,21 +219,42 @@
             margin-top: 10px;
             font: white;
             border-radius: 50px;
+
         }
 
         .foot-sp {
             text-decoration: none;
             color: black;
+
+
         }
 
         .foot-span {
             margin: 120px auto auto 20px;
         }
 
+        .up {
+            font-size: 30px;
+            float: right;
+            margin-right: 0;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #CCCC66;
+            text-align: center;
+            background: #CCCC66;
+
+        }
+
+        .up-ft {
+            color: #660033;
+            text-decoration: none;
+        }
+
         .d1 {
             margin-top: 140px;
             text-align: center;
             color: #CC6600;
+
         }
 
         .search {
@@ -218,12 +293,12 @@
         <Layout>
             <Header>
                 <i-menu mode="horizontal" active-name="1" class="head-theme">
-                    <div class="lay-logo"><img src="images/home/logo_main.jpg" class="logo1"/></div>
+                    <div class="lay-logo"><img src="images/home/logo_main.jpg" class="logo1"></img></div>
                     <div class="layout-nav">
                         <menu-item name="1">
                             <Icon type="ios-navigate"></Icon>
-                            <a href="login.html" class="head-a">
-                                登录</a>
+                            <a  @click='loginhandle()' class="head-a">
+                                {{name}}</a>
                         </menu-item>
                         <menu-item name="2">
                             <Icon type="ios-keypad"></Icon>
@@ -232,13 +307,13 @@
                         </menu-item>
                         <menu-item name="3">
                             <Icon type="ios-analytics"></Icon>
-                            <a href="message.html" class="head-a">
+                            <a href="#" class="head-a">
                                 消息通知
                             </a>
                         </menu-item>
                         <menu-item name="4">
                             <Icon type="ios-paper"></Icon>
-                            <a href="cart.html" class="head-a">
+                            <a href="#" class="head-a">
                                 购物车
                             </a>
                         </menu-item>
@@ -251,25 +326,24 @@
                         <breadcrumb-item>
                             <li class="nav-li"><a href="#" class="nav-a">名著</a>
                                 <ul class="inner-ul" id="inner-ul">
-                                    <li style="list-style: none;"><a href="westjourney_book.html"><img
-                                            src="./images/home/book/mz%20(3).jpeg" class="book-img"/></a></li>
+                                    <li style="list-style: none;"><a href="#"><img
+                                            src="./images/home/book/mz%20(3).jpeg" class="book-img"></img></a></li>
                                 </ul>
                             </li>
                         </breadcrumb-item>
                         <breadcrumb-item>
                             <li class="nav-li"><a href="#" class="nav-a">教辅</a>
                                 <ul class="inner-ul" id="inner-ul">
-                                    <li style="list-style: none;"><a href="first_Chinese.html"><img
-                                            src="img/home/book/xx.jpeg" class="book-img"></img></a></li>
+                                    <li style="list-style: none;"><a href="#"><img src="images/home/book/xx.jpeg"
+                                                                                   class="book-img"></img></a></li>
                                 </ul>
                             </li>
                         </breadcrumb-item>
                         <breadcrumb-item>
                             <li class="nav-li"><a href="#" class="nav-a">其他</a>
                                 <ul class="inner-ul" id="inner-ul">
-                                    <li style="list-style: none;"><a href="ordinaryworld_book.html"><img
-                                            src="img/home/book/qt%20(14).jpeg"
-                                            class="book-img"></img></a></li>
+                                    <li style="list-style: none;"><a href="#"><img src="images/home/book/qt%20(14).jpeg"
+                                                                                   class="book-img"></img></a></li>
                                 </ul>
                             </li>
                         </breadcrumb-item>
@@ -288,31 +362,31 @@
                                     <li class="left-li">
                                         <a href="#">小&nbsp;&nbsp;学</a>
                                         <div class="div2">
-                                            <p><a href="primary_Chinese.html">语&nbsp;文</a></p>
-                                            <p><a href="primary_maths.html">数&nbsp;学</a></p>
+                                            <p><a href="#">语&nbsp;文</a></p>
+                                            <p><a href="#">数&nbsp;学</a></p>
                                         </div>
                                     </li>
 
                                     <li class="left-li">
                                         <a href="#">初&nbsp;&nbsp;中</a>
                                         <div class="div2">
-                                            <p><a href="middle_Chinese.html">语&nbsp;文</a></p>
-                                            <p><a href="middle_maths.html">数&nbsp;学</a></p>
+                                            <p><a href="#">语&nbsp;文</a></p>
+                                            <p><a href="#">数&nbsp;学</a></p>
                                         </div>
                                     </li>
 
                                     <li class="left-li">
                                         <a href="#">高&nbsp;&nbsp;中</a>
                                         <div class="div2">
-                                            <p><a href="high_Chinese.html">语&nbsp;文</a></p>
-                                            <p><a href="high_maths.html">数&nbsp;学</a></p>
+                                            <p><a href="#">语&nbsp;文</a></p>
+                                            <p><a href="#">数&nbsp;学</a></p>
                                         </div>
                                     </li>
                                     <li class="left-li">
-                                        <a href="university_books.html">大&nbsp;&nbsp;学</a>
+                                        <a href="#">大&nbsp;&nbsp;学</a>
                                     </li>
                                     <li class="left-li">
-                                        <a href="others.html">其&nbsp;&nbsp;他</a>
+                                        <a href="#">其&nbsp;&nbsp;他</a>
                                     </li>
                                 </ul>
                             </aside>
@@ -344,64 +418,64 @@
                         <!-- 图书方块 -->
                         <div>
                             <br/>
-                            <a href="ninth_Chinese.html">
+                            <a href="#">
                                 <div class="wrapper first-wrapper" id="wrapper">&nbsp;&nbsp;
                                     <img src="images/home/book/cz.jpeg" id="img1" class="book-img"/>
                                     <p class="d1">语文&nbsp;九年级上册<br/>25元</p>
                                 </div>
                             </a>
-                            <a href="human_save.html">
+                            <a href="#">
                                 <div class="wrapper next-wrapper" id="wrapper">&nbsp;&nbsp;
                                     <img src="images/home/book/qt%20(18).jpeg" id="img2" class="book-img"/>
                                     <p class="d1">拯救人类&nbsp;&nbsp;卷二<br/>45元</p>
                                 </div>
                             </a>
-                            <a href="college_career.html">
+                            <a href="#">
                                 <div class="wrapper next-wrapper" id="wrapper">&nbsp;&nbsp;&nbsp;
                                     <img src="images/home/book/dx(3).jpeg" id="img3" class="book-img"/>
                                     <p class="d1">大学生职业规划<br/>35元</p>
                                 </div>
                             </a>
-                            <a href="law_book.html">
+                            <a href="#">
                                 <div class="wrapper next-wrapper" id="wrapper">
                                     <img src="images/home/book/dx.jpeg" id="img4" class="book-img"/>&nbsp;
                                     <p class="d1">法律硕士联考<br/>35元</p>
                                 </div>
                             </a>
-                            <a href="highbook_Chinese.html">
+                            <a href="#">
                                 <div class="wrapper next-wrapper" id="wrapper">&nbsp;&nbsp;
                                     <img src="images/home/book/gz.jpeg" id="img5" class="book-img"/>
                                     <p class="d1">语文&nbsp;高中<br/>30元</p>
                                 </div>
                             </a>
-                            <a href="longmarch_book.html">
+                            <a href="#">
                                 <div class="wrapper first-wrapper line-wrapper" id="wrapper">
                                     <img src="images/home/book/mz%20(2).jpeg" id="img6" class="book-img"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <p class="d1">永远的长征<br/>40元</p>
                                 </div>
                             </a>
-                            <a href="westjourney_book.html">
+                            <a href="#">
                                 <div class="wrapper next-wrapper line-wrapper" id="wrapper">
                                     <img src="images/home/book/mz%20(3).jpeg" id="img7" class="book-img"/>&nbsp;
                                     <p class="d1">西游记<br/>40元</p>
                                 </div>
-                            </a><a href="howl_book.html">
+                            </a><a href="#">
                             <div class="wrapper next-wrapper line-wrapper" id="wrapper">&nbsp;&nbsp;&nbsp;
-                                <img src="images/home/book/mz%20(4).jpeg" id="img8" class="book-img"/>
+                                <img src="images/home/b ook/mz%20(4).jpeg" id="img8" class="book-img"/>
                                 <p class="d1">怒吼<br/>40元</p>
                             </div>
-                        </a><a href="whitedeer_book.html">
+                        </a><a href="#">
                             <div class="wrapper next-wrapper line-wrapper" id="wrapper">
                                 <img src="images/home/book/mz.jpeg" id="img9" class="book-img"/>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <p class="d1">白鹿原&nbsp;陈忠实<br/>40元</p>
                             </div>
-                        </a><a href="ordinaryworld_book.html">
+                        </a><a href="#">
                             <div class="wrapper next-wrapper line-wrapper" id="wrapper">&nbsp;&nbsp;
                                 <img src="images/home/book/qt%20(14).jpeg" id="img10" class="book-img"/>
                                 <p class="d1">平凡的世界<br/>40元</p>
                             </div>
                         </a></div>
-                        <back-top :bottom="400"></back-top>
+                        <div class="up"><a href="#" class="up-ft">↑</a></div>
                         <div class="head-border"><img src="images/home/logo10.png" class="line-wrapper"/>
                             <img src="images/home/blank-photo.png" class="blank-photo"/>
                         </div>
@@ -423,7 +497,29 @@
         el: '#home_app',
         data() {
             return {
+                name:"登录",
                 value2: 0
+            }
+        },
+        created(){
+            axios({
+                url:"http://localhost/login/getsession",
+                method:"POST",
+            }).then(res=>{
+                var name=res.data.name;
+            if(name=="");
+                else
+                    this.name=name;
+        });
+        },
+        methods:{
+            loginhandle(){
+           if(this.name=="登录"){
+               location.href = "login.html";
+           }else {
+               location.href = "detail.html";
+           }
+
             }
         }
     })
