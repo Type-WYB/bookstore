@@ -4,6 +4,8 @@
 <mapper namespace="mapper.ProductMapper">
 
 
-
+<select id="getAllProduct" resultType="product">
+    select * from product
+</select>
 
 </mapper>

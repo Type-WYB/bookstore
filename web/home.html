@@ -3,8 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>书虫</title>
-    <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
-    <script src="js/head.js"></script>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
+    <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
+    <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
+    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
+    <script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript"
+            charset="utf-8"></script><!-- 解决前缀问题 -->
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
     <style type="text/css" scoped>
         .layout {
             border: 1px solid #d7dde4;
@@ -422,6 +430,28 @@
 						</span></Footer>
         </Layout>
     </div>
+    <table>
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr :key='item.id' v-for='item in books'>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.image}}</td>
+            <td>
+                <a href="" @click.prevent>修改</a>
+                <span>|</span>
+                <a href="" @click.prevent>删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <script>
     new Vue({
@@ -429,7 +459,8 @@
         data() {
             return {
                 name:"登录",
-                value2: 0
+                value2: 0,
+                books: []
             }
         },
         created(){
@@ -439,8 +470,16 @@
             }).then(res=>{
                 var name=res.data.name;
             if(name=="");
-                else
-                    this.name=name;
+            else
+                this.name=name;
+        });
+
+            axios({
+                url:"http://localhost/product/homeProduct",
+                method:"POST",
+            }).then(res=>{
+                var json=res.data;
+                this.books=json;
         });
         },
         methods:{
