@@ -3,15 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>注册</title>
+    <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
     <script src="js/head.js"></script>
     <style type="text/css">
         body {
-            background: url(./images/regist/bg.jpeg);
+            background: url(images/login/desk.jpeg) no-repeat;
         }
 
         .form-style {
-            margin: 80px auto auto 500px;
-            border: 1px solid;
+            margin: -324px auto auto 720px;
+            border: 1px ;
             height: 500px;
             width: 450px;
             padding: 20px;
@@ -28,12 +29,14 @@
         .regist-title {
             margin: 5px auto auto 180px;
             font-size: 26px;
+            color: #CCCC66;
 
         }
     </style>
 </head>
 <body>
 <div id="regist_app">
+    <div id="main" style="width: 600px;height:400px;"></div>
     <div class="form-style">
         <label class="regist-title">注册</label></br></br>
         <i-form ref="formCustom" :model="formCustom" :rules="ruleCustom" :label-width="100">
@@ -151,6 +154,46 @@
             }
         }
     })
+    var myChart = echarts.init(document.getElementById('main'));
+    var data = [];
+
+    for (var i = 0; i <= 360; i++) {
+        var t = i / 180 * Math.PI;
+        var r = Math.sin(2 * t) * Math.cos(2 * t);
+        data.push([r, i]);
+    }
+
+    option = {
+
+        legend: {
+            data: ['line']
+        },
+        polar: {
+            center: ['50%', '54%']
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        angleAxis: {
+            type: 'value',
+            startAngle: 0
+        },
+        radiusAxis: {
+            min: 0
+        },
+        series: [{
+            coordinateSystem: 'polar',
+            name: 'line',
+            type: 'line',
+            showSymbol: false,
+            data: data
+        }],
+        animationDuration: 4000
+    };
+    myChart.setOption(option);
 </script>
 </body>
 </html>

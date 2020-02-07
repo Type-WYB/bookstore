@@ -2,17 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title></title>
-    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
-    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
-    <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
-    <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
-    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
-    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
-    <script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript"
-            charset="utf-8"></script><!-- 解决前缀问题 -->
-    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
+    <title>登录</title>
+    <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
+    <script src="js/head.js"></script>
     <style type="text/css">
         body {
             background: url(images/login/desk.jpeg) no-repeat;
@@ -63,31 +55,32 @@
             position: absolute;
         }
 
-        .container a:nth-child(1) img {
+        .container span:nth-child(1) img {
+
             transform: rotateY(0deg);
         }
 
-        .container a:nth-child(2) img {
+        .container span:nth-child(2) img {
             transform: rotateY(40deg);
         }
 
-        .container a:nth-child(3) img {
+        .container span:nth-child(3) img {
             transform: rotateY(80deg);
         }
 
-        .container a:nth-child(4) img {
+        .container span:nth-child(4) img {
             transform: rotateY(120deg);
         }
 
-        .container a:nth-child(5) img {
+        .container span:nth-child(5) img {
             transform: rotateY(160deg);
         }
 
-        .container a:nth-child(6) img {
+        .container span:nth-child(6) img {
             transform: rotateY(200deg);
         }
 
-        .container a:nth-child(7) img {
+        .container span:nth-child(7) img {
             transform: rotateY(240deg);
         }
 
@@ -133,17 +126,17 @@
     </div>
     <div class="stage-area">
         <div class="container">
-            <a href="#"><img src="images/login/1.jpeg"/></a>
-            <a href="#"><img src="images/login/2.jpeg"/></a>
-            <a href="#"><img src="images/login/3.jpeg"/></a>
-            <a href="#"><img src="images/login/4.jpeg"/></a>
-            <a href="#"><img src="images/login/5.jpeg"/></a>
-            <a href="#"><img src="images/login/6.jpeg"/></a>
-            <a href="#"><img src="images/login/7.jpeg"/></a>
+            <span><img src="images/login/1.jpeg"/></span>
+            <span><img src="images/login/2.jpeg"/></span>
+            <span><img src="images/login/3.jpeg"/></span>
+            <span><img src="images/login/4.jpeg"/></span>
+            <span><img src="images/login/5.jpeg"/></span>
+            <span><img src="images/login/6.jpeg"/></span>
+            <span><img src="images/login/7.jpeg"/></span>
         </div>
     </div>
     <div class="login-form">
-        <label class="title-font">登录</label></br></br>
+        <label class="title-font">登录</label><br/><br/>
         <i-form ref="formCustom" :model="formCustom" :rules="ruleCustom">
             <form-item prop="user">
                 <i-input type="text" v-model="formCustom.user" placeholder="用户名">

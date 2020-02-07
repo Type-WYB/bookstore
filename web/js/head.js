@@ -7,7 +7,7 @@ document.writeln("		<title>头部文件引用</title>");
 document.writeln("		<link href=\'css/animate.min.css\' rel=\'stylesheet\' type=\'text/css\' /><!-- Animation库 -->");
 document.writeln("		<link href=\'css/normalize.css-4.0.0/normalize.css\' rel=\'stylesheet\' type=\'text/css\' /><!-- Css重置 -->");
 document.writeln("		<link href=\'css/iview.css\' rel=\'stylesheet\' type=\'text/css\' /><!-- iview组件库 -->");
-document.writeln("		<link href=\'favicon.ico\' type=\'image/x-icon\' rel=\'icon\' /><!-- 图标 -->");
+document.writeln(" <link href=\'images/favicon.ico\' type=\'image/x-icon\' rel=\'icon\'/><!-- 图标 -->");
 document.writeln("		<script src=\'js/jquery-1.8.3.min.js\' ></script><!-- jquery库 -->");
 document.writeln("		<script src=\'http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js\' ></script><!-- 解决前缀问题 -->");
 document.writeln("		<script src=\'js/vue.min.js\' ></script>");
