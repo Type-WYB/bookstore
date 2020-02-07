@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+import pojo.Product;
+import service.ProductService;
+import serviceimpl.ProductServiceImpl;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,14 +23,15 @@ import java.util.Map;
  * @date 2020/2/7 16:51
  */
 @Controller
-@RequestMapping(value = "/Product/*")
+@RequestMapping(value = "/product/*")
 public class ProductController {
 
+    @Resource
+    ProductServiceImpl productServiceImpl;
 
     @RequestMapping(value = "/homeProduct",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    ModelAndView homeProduct(){
-
-        return new ModelAndView(new MappingJackson2JsonView(),null );
+    List<Product> homeProduct(){
+        return productServiceImpl.getHomeProduct();
     }
 }

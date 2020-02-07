@@ -493,6 +493,28 @@
 						</span></Footer>
         </Layout>
     </div>
+    <table>
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr :key='item.id' v-for='item in books'>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.image}}</td>
+            <td>
+                <a href="" @click.prevent>修改</a>
+                <span>|</span>
+                <a href="" @click.prevent>删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <script>
     new Vue({
@@ -500,18 +522,28 @@
         data() {
             return {
                 name:"登录",
-                value2: 0
+                value2: 0,
+                books: []
             }
         },
         created(){
+
             axios({
                 url:"http://localhost/login/getsession",
                 method:"POST",
             }).then(res=>{
                 var name=res.data.name;
             if(name=="");
-                else
-                    this.name=name;
+            else
+                this.name=name;
+        });
+
+            axios({
+                url:"http://localhost/product/homeProduct",
+                method:"POST",
+            }).then(res=>{
+                var json=res.data;
+                this.books=json;
         });
         },
         methods:{
