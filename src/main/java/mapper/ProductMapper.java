@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ProductMapper {
     List<Product> getAllProduct();
+    Product getProductById(int id);
 }

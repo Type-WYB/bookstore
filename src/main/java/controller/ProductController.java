@@ -1,10 +1,8 @@
 package controller;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import pojo.Product;
@@ -34,4 +32,11 @@ public class ProductController {
     List<Product> homeProduct(){
         return productServiceImpl.getHomeProduct();
     }
+    @RequestMapping(value = "/productinfo",method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    Product productInfo(@RequestParam("id") int id){
+        return productServiceImpl.getProById(id);
+
+    }
+
 }

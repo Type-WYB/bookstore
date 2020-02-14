@@ -1,8 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>大学生职业规划</title>
+    <title>{{bookinfo.name}}</title>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/head.js"></script>
     <style type="text/css">
         .layout-footer-center {
@@ -177,7 +180,7 @@
         <Divider type="vertical" class="line"/>
         <div style="background:#eee;padding: 20px" class="card-style">
             <Card :bordered="false" class="inner-style">
-                <p slot="title">大学生职业规划 35元</p>
+                <p slot="title">{{bookinfo.name}} {{bookinfo.listprice}}元</p>
 
                 <p class="font-style">书虫自营</p><br/>
                 购买数量:
@@ -202,15 +205,33 @@
         data() {
             return {
                 value1: 1,
-                value5: ''
+                value5: '',
+                id:<%=request.getParameter("id")%>,
+                bookinfo:{
+                }
             }
         },
+
+        created(){
+            axios({
+                url:"http://localhost/product/productinfo?id="+this.id,
+                method:"GET"
+            }).then(res=>{
+               this.bookinfo=res.data;
+        });
+        },
+
         methods: {
             resHome() {
                 location.href = "home.html";
             },
             resCart() {
-                location.href = "cart.html";
+                axios({
+                    url:"http://localhost/product/productinfo?id="+this.id,
+                    method:"GET"
+                }).then(res=>{
+                    this.bookinfo=res.data;
+            });
             }
 
         }

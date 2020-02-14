@@ -42,4 +42,10 @@ public class LoginController {
         return new ModelAndView(new MappingJackson2JsonView(), name);
     }
 
+    @RequestMapping(value = "/exit",method = RequestMethod.GET)
+    String exit(HttpSession session){
+      session.invalidate();
+        return "home";
+    }
 }
+

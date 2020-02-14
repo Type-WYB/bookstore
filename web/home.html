@@ -34,8 +34,7 @@
         }
 
         .layout-nav {
-            width: 420px;
-            margin: 0 auto;
+            width: auto;
             margin-right: 20px;
         }
 
@@ -285,12 +284,16 @@
             margin-left: 179px;
             width: 1200px;
         }
+        .nodisplay{
+           display: none;
+        }
     </style>
 </head>
 <body>
 <div id="home_app">
     <div class="layout">
         <Layout>
+
             <Header>
                 <i-menu mode="horizontal" active-name="1" class="head-theme">
                     <div class="lay-logo"><img src="images/home/logo_main.jpg" class="logo1"></img></div>
@@ -302,26 +305,35 @@
                         </menu-item>
                         <menu-item name="2">
                             <Icon type="ios-keypad"></Icon>
-                            <a href="regist.html" class="head-a">
-                                退出</a>
+                            <a @click='btn2handle()' class="head-a">
+                                {{btn2}}</a>
                         </menu-item>
-                        <menu-item name="3">
+                        <menu-item name="3" >
                             <Icon type="ios-analytics"></Icon>
                             <a href="#" class="head-a">
                                 消息通知
                             </a>
                         </menu-item>
 
-                        <menu-item name="4">
+                        <menu-item name="4" v-bind:style="{display:d}">
                             <Icon type="ios-paper"></Icon>
                             <a href="#" class="head-a">
                                 购物车
                             </a>
                         </menu-item>
 
+                        <menu-item name="5" v-bind:style="{display:d}">
+                            <Icon type="ios-paper"></Icon>
+                            <a href="#" class="head-a">
+                                订单
+                            </a>
+                        </menu-item>
+
                     </div>
                 </i-menu>
             </Header>
+
+
             <i-content :style="{padding: '0 50px'}">
                 <i-breadcrumb :style="{margin: '20px 50px'}">
                     <ul>
@@ -421,15 +433,15 @@
                         <div>
                             <br/>
 
-                        <a href="#"  :key='item.id' v-for='item in books'>
+                        <a v-bind="{href:'productinfo.jsp?id='+item.id}"  :key='item.id' v-for='item in books'>
                             <div class="wrapper next-wrapper line-wrapper" id="wrapper">&nbsp;&nbsp;
-                                <img :src="item.image" id="img10" class="book-img"/>
+                                <img :src="item.image" :id="item.id" class="book-img"/>
                                 <p class="d1">{{item.name}}<br/>{{item.listprice}}元</p>
                             </div>
                         </a>
-
-
                         </div>
+
+
                         <div class="up"><a href="#" class="up-ft">↑</a></div>
                         <div class="head-border"><img src="images/home/logo10.png" class="line-wrapper"/>
                             <img src="images/home/blank-photo.png" class="blank-photo"/>
@@ -446,28 +458,7 @@
 						</span></Footer>
         </Layout>
     </div>
-    <table>
-        <thead>
-        <tr>
-            <th>编号</th>
-            <th>名称</th>
-            <th>时间</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr :key='item.id' v-for='item in books'>
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.image}}</td>
-            <td>
-                <a href="" @click.prevent>修改</a>
-                <span>|</span>
-                <a href="" @click.prevent>删除</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+
 </div>
 <script>
     new Vue({
@@ -475,8 +466,10 @@
         data() {
             return {
                 name:"登录",
+                d:"none",
                 value2: 0,
-                books: []
+                books: [],
+                btn2:"注册"
             }
         },
         created(){
@@ -486,9 +479,10 @@
                 method:"POST",
             }).then(res=>{
                 var name=res.data.name;
-            if(name=="");
+            if(name==""){
+            }
             else
-                this.name=name;
+            {this.name=name;this.btn2="退出";this.d="";}
         });
 
             axios({
@@ -506,7 +500,17 @@
            }else {
                location.href = "detail.html";
            }
+            },
+            btn2handle(){
+                if(this.btn2=="注册"){
+                    location.href = "regist.html";
+                }else {
+                    axios({
+                        url:"http://localhost/login/exit",
+                        method:"GET",
+                    }).then(function (value) { location.reload(); });
 
+                }
             }
         }
     })

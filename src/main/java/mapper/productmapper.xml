@@ -7,5 +7,7 @@
 <select id="getAllProduct" resultType="product">
     select * from product
 </select>
-
+    <select id="getProductById" parameterType="int" resultType="product">
+    select * from product where id=#{id}
+</select>
 </mapper>
