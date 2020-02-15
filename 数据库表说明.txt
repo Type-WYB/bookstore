@@ -1,0 +1,52 @@
+表cartitem——表示购物车记录表
+    字段id——表示记录序列号
+    字段customerid——表示购买用户的id
+    字段proudectid——表示商品id
+    字段prodectname——表示商品名称
+    字段listprice——表示商品价格
+    字段qty——表示购买数量
+
+表category——表示书籍商品类别表
+    字段id——表示书籍类别的id
+    字段name——表示书籍类别的名称
+    字段descn——表示书籍类别的描述
+
+表customer——表示用户表
+    字段customerid——表示用户id
+    字段name——表示用户名字
+    字段password——表示用户登录密码
+    字段email——表示用户的邮箱
+
+表order——表示订单表
+    字段id——表示订单id
+    字段customerid——表示登录用户的id
+    字段username——表示登录用户的用户名
+    字段orderdate——表示订单日期
+    字段addr1——表示用户地址
+    字段city——表示用户所在城市
+    字段state——表示订单状态，审核或未审核
+    字段zip——表示用户所在城市的邮编
+    字段phone——表示用户的电话
+
+表orderitem——表示书籍商品购买表
+    字段id——表示序列号
+    字段orderid——表示订单号
+    字段productname——表示商品名称
+    字段listprice——表示商品单价
+    字段qty——表示购买数量
+    字段totalprice——表示总价
+
+表product——表示书籍商品表
+    字段id——表示书籍商品id
+    字段name——表示书籍商品名称
+    字段categoryid——表示书籍商品所属分类的类别ID
+    字段listprice——表示书籍商品的价格
+    字段unitcost——表示书籍商品的进价成本
+    字段suppid——表示书籍商品的供应商id
+    字段desn——表示书籍商品的描述
+    字段qty——表示书籍商品的数量
+    字段image——表示书籍商品的图片地址
+
+表supplier——表示供应商表
+    字段id——表示供应商的id
+    字段name——表示供应商的名字
