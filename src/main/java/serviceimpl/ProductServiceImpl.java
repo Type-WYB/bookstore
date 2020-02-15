@@ -29,4 +29,9 @@ public class ProductServiceImpl implements ProductService {
             return list;
         }
     }
+
+    @Override
+    public Product getProduct(int id) {
+        return productMapper.getProduct(id);
+    }
 }

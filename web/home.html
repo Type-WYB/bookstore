@@ -146,7 +146,7 @@
                         <!-- 图书方块 -->
                         <div>
                             <div v-for="(value,key) in bookList">
-                                <a href="javascript:;">
+                                <a :href="['/book-detail.html?id='+bookList[key].id]">
                                     <div class="wrapper next-wrapper">
                                         <img :src="['/images/home/book/'+bookList[key].image]" :alt="bookList[key].name"
                                              class="book-img">
