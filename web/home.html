@@ -23,8 +23,7 @@
                         </menu-item>
                         <menu-item name="2">
                             <Icon type="ios-keypad"></Icon>
-                            <a href="regist.html" class="head-a">
-                                退出</a>
+                            <a href="javascript:;" @click="logout()" class="head-a">退出</a>
                         </menu-item>
                         <menu-item name="3">
                             <Icon type="ios-analytics"></Icon>
@@ -62,7 +61,7 @@
                             <li class="nav-li"><span class="nav-a">教辅</span>
                                 <ul class="inner-ul" id="inner-ul2">
                                     <li style="list-style: none;"><a href="first_Chinese.html"><img
-                                            src="images/home/book/xx.jpeg" class="book-img"/></a></li>
+                                            src="images/home/book/xmjys.jpeg" class="book-img"/></a></li>
                                 </ul>
                             </li>
                         </breadcrumb-item>
@@ -70,7 +69,7 @@
                             <li class="nav-li"><span class="nav-a">其他</span>
                                 <ul class="inner-ul" id="inner-ul3">
                                     <li style="list-style: none;"><a href="ordinaryworld_book.html"><img
-                                            src="images/home/book/qt%20(14).jpeg"
+                                            src="images/home/book/xyj.jpeg"
                                             class="book-img"/></a></li>
                                 </ul>
                             </li>
@@ -90,42 +89,42 @@
                                     <li class="left-li">
                                         <a href="#">小&nbsp;&nbsp;学</a>
                                         <div class="div2">
-                                            <p><a href="primary_Chinese.html">语&nbsp;文</a></p>
-                                            <p><a href="primary_maths.html">数&nbsp;学</a></p>
+                                            <p><a href="book_type.html?type=小学语文">语&nbsp;文</a></p>
+                                            <p><a href="book_type.html?type=小学数学">数&nbsp;学</a></p>
                                         </div>
                                     </li>
 
                                     <li class="left-li">
                                         <a href="#">初&nbsp;&nbsp;中</a>
                                         <div class="div2">
-                                            <p><a href="middle_Chinese.html">语&nbsp;文</a></p>
-                                            <p><a href="middle_maths.html">数&nbsp;学</a></p>
+                                            <p><a href="book_type.html?type=初中语文">语&nbsp;文</a></p>
+                                            <p><a href="book_type.html?type=初中数学">数&nbsp;学</a></p>
                                         </div>
                                     </li>
 
                                     <li class="left-li">
                                         <a href="#">高&nbsp;&nbsp;中</a>
                                         <div class="div2">
-                                            <p><a href="high_Chinese.html">语&nbsp;文</a></p>
-                                            <p><a href="high_maths.html">数&nbsp;学</a></p>
+                                            <p><a href="book_type.html?type=高中语文">语&nbsp;文</a></p>
+                                            <p><a href="book_type.html?type=高中语文">数&nbsp;学</a></p>
                                         </div>
                                     </li>
                                     <li class="left-li">
-                                        <a href="university_books.html">大&nbsp;&nbsp;学</a>
+                                        <a href="book_type.html?type=大学">大&nbsp;&nbsp;学</a>
                                     </li>
                                     <li class="left-li">
-                                        <a href="others.html">其&nbsp;&nbsp;他</a>
+                                        <a href="book_type.html?type=其他">其&nbsp;&nbsp;他</a>
                                     </li>
                                 </ul>
                             </aside>
                             <!-- 轮播图 -->
                             <Carousel autoplay v-model="value2" loop class="transform-img" autoplay-speed="3000">
                                 <carousel-item>
-                                    <div class="demo-carousel "><img src="images/home/book/cz.jpeg" height="300px"
+                                    <div class="demo-carousel "><img src="images/home/book/czjnjyw.jpeg" height="300px"
                                                                      width="800px"/></div>
                                 </carousel-item>
                                 <carousel-item>
-                                    <div class="demo-carousel"><img src="images/home/book/mz%20(4).jpeg" height="300px"
+                                    <div class="demo-carousel"><img src="images/home/book/xmjys.jpeg" height="300px"
                                                                     width="800px"/></div>
                                 </carousel-item>
                                 <carousel-item>
@@ -133,11 +132,11 @@
                                                                     width="800px"/></div>
                                 </carousel-item>
                                 <carousel-item>
-                                    <div class="demo-carousel"><img src="images/home/book/qt%20(10).jpeg" height="300px"
+                                    <div class="demo-carousel"><img src="images/home/book/fzjqbtzy.jpeg" height="300px"
                                                                     width="800px"/></div>
                                 </carousel-item>
                                 <carousel-item>
-                                    <div class="demo-carousel"><img src="images/home/book/gz.jpeg" height="300px"
+                                    <div class="demo-carousel"><img src="images/home/book/gzyw.jpeg" height="300px"
                                                                     width="800px"/></div>
                                 </carousel-item>
                             </Carousel>
@@ -182,32 +181,46 @@
 <script>
     new Vue({
         el: '#home_app',
-        data() {
-            return {
-                name: "登录",
-                value2: 0,
-                books: [],
-                bookList: {}
-            }
+        data: {
+            name: "登录",
+            value2: 0,
+            books: [],
+            bookList: {}
         },
         mounted() {
             var _this = this;
+            axios.get("/customer/getSession").then(function (res) {
+                if (res.data.code === 1) {
+                    _this.name=res.data.data.name;
+                } else {
+                    _this.name = "登录";
+                    window.location.href = "login.html";
+                }
+            });
             // 初始化课程表格数据
             axios.get("/product/homeProduct").then(function (res) {
-                console.log(res);
                 _this.bookList = res.data.data;
             }).catch(function (reason) {
                 console.log(reason);
             });
+
         },
         methods: {
             loginhandle() {
-                if (this.name == "登录") {
+                if (this.name === "登录") {
                     location.href = "login.html";
-                } else {
-                    location.href = "detail.html";
                 }
-
+            },
+            logout() {
+                axios.get("/customer/logout").then(function (res) {
+                    if (res.data.code === 1) {
+                        window.location.href = "first.html";
+                    } else {
+                        window.location.href = "home.html";
+                    }
+                }).catch(function (reason) {
+                    console.log(reason);
+                })
             }
         }
     })

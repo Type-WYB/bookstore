@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分类</title>
+    <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
+    <script src="js/head.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <link rel="stylesheet" href="css/book_type.css">
+</head>
+<body>
+<div id="book-type">
+    <header>
+        <i-menu mode="horizontal" active-name="1" class="head-theme">
+            <div class="lay-logo"><img src="images/home/logo_main.jpg" class="logo1"/></div>
+        </i-menu>
+    </header>
+
+    <div id="book-content">
+        <div v-for="(value,key) in bookList" class="book-item">
+            <a :href="['/book-detail.html?id='+bookList[key].id]">
+                <div class="wrapper next-wrapper">
+                    <img
+                            :src="['/images/home/book/'+bookList[key].image]"
+                            :alt="bookList[key].name"
+                            class="book-img"/>
+                    <p class="d1">
+                        <span class="book-name">{{bookList[key].name}}</span>
+                        <span class="book-price">{{bookList[key].listprice}}</span>
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="layout-footer-center foot line-wrapper"><img src="images/home/logo.jpeg" class="foot-img"/>
+        <span class="foot-span"><a href="https://www.mi.com/" class="foot-sp">小米商城</a>|<a
+                href="http://www.dangdang.com/"
+                class="foot-sp">当当网</a>|图书|图片
+					&copy; bookworm
+				</span>
+    </footer>
+</div>
+<script>
+    new Vue({
+        el: '#book-type',
+        data:{
+            bookList: {}
+        },
+        mounted(){
+            var _this = this;
+            // 初始化课程表格数据
+            axios.get("/product/getProductByCategory"+window.location.search).then(function (res) {
+                console.log(res);
+                _this.bookList = res.data.data;
+            }).catch(function (reason) {
+                console.log(reason);
+            });
+        }
+    })
+</script>
+</body>
+</html>

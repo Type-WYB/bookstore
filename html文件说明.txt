@@ -1,10 +1,9 @@
 book-detail.html——各种书籍的细节信息，可以点击添加到购物车中
+book_type.html——各种分类类别的页面
 cart.html——购物车页面，是添加到购物车的书籍信息
 first.html——网站进入页面
 head.html——导入各种要用的静态资源文件
 home.html——首页
 login.html——登录页面，登录功能完成
 message.html——没看明白是什么页面，猜应该是订单页面
-others.html——书籍分类页面之其他类书籍
 regist.html——注册页面，注册功能完成
-university_books.html——书籍分类页面之大学类书籍

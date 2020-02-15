@@ -15,4 +15,12 @@ public interface ProductMapper {
      * @return 返回查询结果
      */
     Product getProduct(int id);
+
+    /**
+     * 通过商品分类id查询符合条件的书籍信息
+     *
+     * @param categoryId 商品分类idd
+     * @return 返回查询结果集
+     */
+    List<Product> selectByCategoryId(int categoryId);
 }

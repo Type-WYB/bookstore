@@ -58,4 +58,34 @@ public class UserController {
             return new ResultInfo(0, "注册失败", "", "");
         }
     }
+
+    /**
+     * 获取用户登录成功的用户信息
+     *
+     * @param session session对象
+     * @return 返回查询结果
+     */
+    @RequestMapping("/getSession")
+    @ResponseBody
+    public ResultInfo getSession(HttpSession session) {
+        Object customer = session.getAttribute("customer");
+        if (customer != null) {
+            return new ResultInfo(1, "获取登录成功的用户信息", "home.html", (Customer) session.getAttribute("customer"));
+        }else {
+            return new ResultInfo(0,"用户未登录","login.html");
+        }
+    }
+
+    @RequestMapping("/logout")
+    @ResponseBody
+    public ResultInfo logout(HttpSession session) {
+        Customer customer = (Customer) session.getAttribute("customer");
+        // 判断用户是否有效
+        if (customer != null) {
+            session.removeAttribute("customer");
+            return new ResultInfo(1, "注销成功", "first.html");
+        } else {
+            return new ResultInfo(0, "注销失败", "home.html");
+        }
+    }
 }

@@ -12,4 +12,8 @@
         select * from product where id=#{id}
     </select>
 
+    <select id="selectByCategoryId" parameterType="int" resultType="pojo.Product">
+        select * from product where categoryid=#{categoryId}
+    </select>
+
 </mapper>
