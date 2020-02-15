@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
-    <script src="js/vue.min.js"></script>
-    <script src="js/axios.min.js"></script>
+    <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
     <script src="js/head.js"></script>
     <style type="text/css">
         body {
@@ -56,32 +55,32 @@
             position: absolute;
         }
 
-        .container a:nth-child(1) img {
+        .container span:nth-child(1) img {
 
             transform: rotateY(0deg);
         }
 
-        .container a:nth-child(2) img {
+        .container span:nth-child(2) img {
             transform: rotateY(40deg);
         }
 
-        .container a:nth-child(3) img {
+        .container span:nth-child(3) img {
             transform: rotateY(80deg);
         }
 
-        .container a:nth-child(4) img {
+        .container span:nth-child(4) img {
             transform: rotateY(120deg);
         }
 
-        .container a:nth-child(5) img {
+        .container span:nth-child(5) img {
             transform: rotateY(160deg);
         }
 
-        .container a:nth-child(6) img {
+        .container span:nth-child(6) img {
             transform: rotateY(200deg);
         }
 
-        .container a:nth-child(7) img {
+        .container span:nth-child(7) img {
             transform: rotateY(240deg);
         }
 
@@ -123,17 +122,17 @@
 <div id="login_app">
     <div class="wx-block">
         <p>微信扫码登录:</p><br/>
-        <img src="images/login/wx.JPG">
+        <img src="images/login/wx.JPG" />
     </div>
     <div class="stage-area">
         <div class="container">
-            <a href="#"><img src="images/login/1.jpeg"/></a>
-            <a href="#"><img src="images/login/2.jpeg"/></a>
-            <a href="#"><img src="images/login/3.jpeg"/></a>
-            <a href="#"><img src="images/login/4.jpeg"/></a>
-            <a href="#"><img src="images/login/5.jpeg"/></a>
-            <a href="#"><img src="images/login/6.jpeg"/></a>
-            <a href="#"><img src="images/login/7.jpeg"/></a>
+            <span><img src="images/login/1.jpeg"/></span>
+            <span><img src="images/login/2.jpeg"/></span>
+            <span><img src="images/login/3.jpeg"/></span>
+            <span><img src="images/login/4.jpeg"/></span>
+            <span><img src="images/login/5.jpeg"/></span>
+            <span><img src="images/login/6.jpeg"/></span>
+            <span><img src="images/login/7.jpeg"/></span>
         </div>
     </div>
     <div class="login-form">
@@ -157,9 +156,6 @@
             </form-item>
         </i-form>
     </div>
-
-</div>
-<div id="mpanel4" style="margin-top:50px;">
 </div>
 <script>
     new Vue({
@@ -173,6 +169,7 @@
                 ruleCustom: {
                     user: [{
                         required: true,
+                        type: 'string',
                         message: '请输入用户名',
                         trigger: 'blur'
                     }],
@@ -193,33 +190,31 @@
         },
         methods: {
             handleSubmit(name) {
-                this.$refs[name].validate((valid) => {
+                this.$refs[name].validate(
+                    (valid)=>{
                     if (valid) {
-                        var postdata = JSON.stringify({
-                            name: this.formCustom.user,
-                            password: this.formCustom.password,
-                        });
-                        axios.post('/customer/login', postdata, {headers: {'Content-Type': 'application/json;charset=UTF-8'}}).then(function (res) {
-                            if (res.data.code === 1) {
-                                var b = confirm(res.data.msg);
-                                if(b){
-                                    window.location.href="home.html";
-                                }
-                            } else {
-                                alert(res.data.msg);
+                        axios({
+                            url:"http://localhost/login/login",
+                            method:"POST",
+                            data:{customername:this.formCustom.user,password:this.formCustom.password}
+                        }).then(res=>{
+                            var is=res.data.valid;
+                            if(is)
+                            {this.$Message.success('验证成功!');
+                            this.resHome();
                             }
-                        }).catch(function (reason) {
-                            console.log(reason);
+                            else
+                                this.$Message.success('验证失败!');
                         });
+
                     } else {
-                        this.$Message.error('登录失败!');
+                        this.$Message.error('信息错误!');
                     }
-                })
+                });
             },
             resHome() {
                 location.href = "home.html";
             }
-
         }
     })
 </script>
