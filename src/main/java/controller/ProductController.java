@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import pojo.Product;
+import pojo.ResultInfo;
 import service.ProductService;
 import serviceimpl.ProductServiceImpl;
 
@@ -29,9 +30,14 @@ public class ProductController {
     @Resource
     ProductServiceImpl productServiceImpl;
 
-    @RequestMapping(value = "/homeProduct",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+//    @RequestMapping(value = "/homeProduct",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+//    @ResponseBody
+//    List<Product> homeProduct(){
+//        return productServiceImpl.getHomeProduct();
+//    }
+    @RequestMapping("/homeProduct")
     @ResponseBody
-    List<Product> homeProduct(){
-        return productServiceImpl.getHomeProduct();
+    ResultInfo homeProduct(){
+        return new ResultInfo(1,"首页书籍信息","home.html",productServiceImpl.getHomeProduct());
     }
 }

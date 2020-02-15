@@ -4,7 +4,7 @@
 <mapper namespace="mapper.ProductMapper">
 
 
-<select id="getAllProduct" resultType="product">
+<select id="getAllProduct" resultType="pojo.Product">
     select * from product
 </select>
 

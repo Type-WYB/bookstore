@@ -6,211 +6,7 @@
     <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
     <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
     <script src="js/head.js"></script>
-    <style type="text/css" scoped>
-        .layout {
-            border: 1px solid #d7dde4;
-            background: #f5f7f9;
-            position: relative;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .layout-nav {
-            width: 420px;
-            margin: 0 auto;
-            margin-right: 20px;
-        }
-
-        .layout-footer-center {
-            text-align: center;
-        }
-
-        .aside-ul .div2 {
-            width: 97px;
-            height: 320px;
-            background: skyblue;
-            position: absolute;
-            top: 23px;
-            left: 138px;
-            display: none;
-            text-align: center;
-            line-height: 100px;
-        }
-
-        .aside-ul li:hover .div2 {
-            display: block;
-            background: #CC6600;
-            width: 60px;
-            height: 300px;
-            transition: .5s;
-        }
-
-        .aside-ul {
-            list-style: none;
-            padding: 20px 0;
-            width: 234px;
-            background: #CCCC66;
-            height: 300px;
-        }
-
-        .aside-ul li {
-            height: 42px;
-            line-height: -1px;
-            padding-left: 65px;
-        }
-
-        .aside-ul li:hover {
-            background: #CC6600;
-        }
-
-        .aside-ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        .book-img {
-            max-width: 100%;
-            height: 100px;
-            z-index: 1;
-            position: absolute;
-            margin: 30px auto auto 33px;
-        }
-
-        .wrapper {
-            height: 220px;
-            width: 159px;
-            background: #FFFFFF;
-            float: left;
-        }
-
-        .wrapper:hover {
-            box-shadow: 0 0 5px 5px #F0F0F0;
-            transform: translate3d(0, -2px, 4px);
-            transition: .3s;
-        }
-
-        body {
-            background: #F5F5F5;
-        }
-
-        .head-a {
-            text-decoration: none;
-            color: white;
-        }
-
-        .nav-li {
-            float: left;
-            width: 129px;
-            color: #F35626;
-            display: block;
-            text-align: center;
-            line-height: 7px;
-            margin-left: 175px;
-        }
-
-        .nav-a {
-            display: block;
-            text-decoration: none;
-            color: #660033;
-        }
-
-        .inner-ul {
-            display: none;
-            margin: -16px auto auto -103px;
-            background: white solid;
-            width: 200px;
-            height: 50px;
-        }
-
-        .nav-li:hover ul {
-            display: block;
-        }
-
-        .bg {
-            margin: 7px auto auto 179px;
-        }
-
-        .logo1 {
-            border-radius: 50px;
-            width: 60px;
-            height: 60px;
-        }
-
-        .first-wrapper {
-            margin-left: 184px;
-        }
-
-        .next-wrapper {
-            margin-left: 57px;
-        }
-
-        .line-wrapper {
-            margin-top: 20px;
-        }
-
-        .blank-photo {
-            width: 772px;
-            height: 82px;
-        }
-
-        .foot {
-            width: 100%;
-            height: 100px;
-            background: #CCCC66;
-        }
-
-        .foot-img {
-            height: 70px;
-            width: 70px;
-            margin-top: 10px;
-            border-radius: 50px;
-        }
-
-        .foot-sp {
-            text-decoration: none;
-            color: black;
-        }
-
-        .foot-span {
-            margin: 120px auto auto 20px;
-        }
-
-        .d1 {
-            margin-top: 140px;
-            text-align: center;
-            color: #CC6600;
-        }
-
-        .search {
-            width: 235px;
-        }
-
-        .transform-img {
-            width: 800px;
-            height: 300px;
-            margin: -300px auto auto 233px;
-        }
-
-        .head-theme {
-            background: #CCCC66;
-        }
-
-        .lay-logo {
-            top: -10px;
-            float: left;
-            margin-left: 50px;
-        }
-
-        .left-li {
-            padding: 10px;
-        }
-
-        .head-border {
-            margin-left: 179px;
-            width: 1200px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
 <div id="home_app">
@@ -349,67 +145,26 @@
 
                         <!-- 图书方块 -->
                         <div>
-                            <br/>
-                            <a href="ninth_Chinese.html">
-                                <div class="wrapper first-wrapper" id="wrapper1">&nbsp;&nbsp;
-                                    <img src="images/home/book/cz.jpeg" id="img1" class="book-img"/>
-                                    <p class="d1">语文&nbsp;九年级上册<br/>25元</p>
-                                </div>
-                            </a>
-                            <a href="human_save.html">
-                                <div class="wrapper next-wrapper" id="wrapper2">&nbsp;&nbsp;
-                                    <img src="images/home/book/qt%20(18).jpeg" id="img2" class="book-img"/>
-                                    <p class="d1">拯救人类&nbsp;&nbsp;卷二<br/>45元</p>
-                                </div>
-                            </a>
-                            <a href="college_career.html">
-                                <div class="wrapper next-wrapper" id="wrapper3">&nbsp;&nbsp;&nbsp;
-                                    <img src="images/home/book/dx(3).jpeg" id="img3" class="book-img"/>
-                                    <p class="d1">大学生职业规划<br/>35元</p>
-                                </div>
-                            </a>
-                            <a href="law_book.html">
-                                <div class="wrapper next-wrapper" id="wrapper4">
-                                    <img src="images/home/book/dx.jpeg" id="img4" class="book-img"/>&nbsp;
-                                    <p class="d1">法律硕士联考<br/>35元</p>
-                                </div>
-                            </a>
-                            <a href="highbook_Chinese.html">
-                                <div class="wrapper next-wrapper" id="wrapper5">&nbsp;&nbsp;
-                                    <img src="images/home/book/gz.jpeg" id="img5" class="book-img"/>
-                                    <p class="d1">语文&nbsp;高中<br/>30元</p>
-                                </div>
-                            </a>
-                            <a href="longmarch_book.html">
-                                <div class="wrapper first-wrapper line-wrapper" id="wrapper6">
-                                    <img src="images/home/book/mz%20(2).jpeg" id="img6" class="book-img"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <p class="d1">永远的长征<br/>40元</p>
-                                </div>
-                            </a>
-                            <a href="westjourney_book.html">
-                                <div class="wrapper next-wrapper line-wrapper" id="wrapper7">
-                                    <img src="images/home/book/mz%20(3).jpeg" id="img7" class="book-img"/>&nbsp;
-                                    <p class="d1">西游记<br/>40元</p>
-                                </div>
-                            </a><a href="howl_book.html">
-                            <div class="wrapper next-wrapper line-wrapper" id="wrapper8">&nbsp;&nbsp;&nbsp;
-                                <img src="images/home/book/mz%20(4).jpeg" id="img8" class="book-img"/>
-                                <p class="d1">怒吼<br/>40元</p>
+                            <div v-for="(value,key) in bookList">
+                                <a href="javascript:;">
+                                    <div class="wrapper next-wrapper">
+                                        <img :src="['/images/home/book/'+bookList[key].image]" :alt="bookList[key].name"
+                                             class="book-img">
+                                        <p class="d1"><span class="book-name">{{bookList[key].name}}</span><span
+                                                class="book-price">{{bookList[key].listprice}}</span>
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
-                        </a><a href="whitedeer_book.html">
-                            <div class="wrapper next-wrapper line-wrapper" id="wrapper9">
-                                <img src="images/home/book/mz.jpeg" id="img9" class="book-img"/>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <p class="d1">白鹿原&nbsp;陈忠实<br/>40元</p>
+                        </div>
+                        <div>
+                            <div>
+                                <back-top :bottom="400"></back-top>
                             </div>
-                        </a><a href="ordinaryworld_book.html">
-                            <div class="wrapper next-wrapper line-wrapper" id="wrapper10">&nbsp;&nbsp;
-                                <img src="images/home/book/qt%20(14).jpeg" id="img10" class="book-img"/>
-                                <p class="d1">平凡的世界<br/>40元</p>
+                            <div class="head-border">
+                                <img src="images/home/logo10.png" class="line-wrapper"/>
+                                <img src="images/home/blank-photo.png" class="blank-photo"/>
                             </div>
-                        </a></div>
-                        <back-top :bottom="400"></back-top>
-                        <div class="head-border"><img src="images/home/logo10.png" class="line-wrapper"/>
-                            <img src="images/home/blank-photo.png" class="blank-photo"/>
                         </div>
                     </div>
                 </Card>
@@ -423,28 +178,6 @@
 						</span></Footer>
         </Layout>
     </div>
-    <table>
-        <thead>
-        <tr>
-            <th>编号</th>
-            <th>名称</th>
-            <th>时间</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr :key='item.id' v-for='item in books'>
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.image}}</td>
-            <td>
-                <a href="" @click.prevent>修改</a>
-                <span>|</span>
-                <a href="" @click.prevent>删除</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </div>
 <script>
     new Vue({
@@ -453,26 +186,18 @@
             return {
                 name: "登录",
                 value2: 0,
-                books: []
+                books: [],
+                bookList: {}
             }
         },
-        created() {
-            axios({
-                url: "http://localhost/login/getsession",
-                method: "POST",
-            }).then(res => {
-                var name = res.data.name;
-                if (name == "") ;
-                else
-                    this.name = name;
-            });
-
-            axios({
-                url: "http://localhost/product/homeProduct",
-                method: "POST",
-            }).then(res => {
-                var json = res.data;
-                this.books = json;
+        mounted() {
+            var _this = this;
+            // 初始化课程表格数据
+            axios.get("/product/homeProduct").then(function (res) {
+                console.log(res);
+                _this.bookList = res.data.data;
+            }).catch(function (reason) {
+                console.log(reason);
             });
         },
         methods: {

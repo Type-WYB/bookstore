@@ -25,6 +25,8 @@ public class ProductServiceImpl implements ProductService {
         List<Product> list= productMapper.getAllProduct();
         if(list.size()>10){
            return list.subList(0,9);
-        }else return list;
+        }else {
+            return list;
+        }
     }
 }

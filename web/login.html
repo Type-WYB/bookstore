@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>登录</title>
     <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
     <script src="js/head.js"></script>
     <style type="text/css">
         body {
@@ -122,7 +124,7 @@
 <div id="login_app">
     <div class="wx-block">
         <p>微信扫码登录:</p><br/>
-        <img src="images/login/wx.JPG" />
+        <img src="images/login/wx.JPG"/>
     </div>
     <div class="stage-area">
         <div class="container">
@@ -191,26 +193,26 @@
         methods: {
             handleSubmit(name) {
                 this.$refs[name].validate(
-                    (valid)=>{
-                    if (valid) {
-                        axios({
-                            url:"http://localhost/login/login",
-                            method:"POST",
-                            data:{customername:this.formCustom.user,password:this.formCustom.password}
-                        }).then(res=>{
-                            var is=res.data.valid;
-                            if(is)
-                            {this.$Message.success('验证成功!');
-                            this.resHome();
-                            }
-                            else
-                                this.$Message.success('验证失败!');
-                        });
-
-                    } else {
-                        this.$Message.error('信息错误!');
-                    }
-                });
+                    (valid) => {
+                        if (valid) {
+                            var postdata = JSON.stringify({
+                                name: this.formCustom.user,
+                                password: this.formCustom.password,
+                            });
+                            axios.post('/customer/login', postdata, {headers: {'Content-Type': 'application/json;charset=UTF-8'}}).then(function (res) {
+                                if (res.data.code === 1) {
+                                    var b = confirm(res.data.msg);
+                                    window.location.href = "home.html";
+                                } else {
+                                    alert(res.data.msg);
+                                }
+                            }).catch(function (reason) {
+                                console.log(reason);
+                            });
+                        } else {
+                            this.$Message.error('信息错误!');
+                        }
+                    });
             },
             resHome() {
                 location.href = "home.html";
