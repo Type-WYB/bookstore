@@ -2,7 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.CartItemMapper">
+    <resultMap id="cartItemMap" type="pojo.CartItem">
+        <id column="id" property="id"/>
+        <result column="customerid" property="customerid"/>
+        <result column="proudectid" property="proudectid"/>
+        <result column="prodectname" property="prodectname"/>
+        <result column="listprice" property="listprice"/>
+        <result column="qty" property="qty"/>
+    </resultMap>
 
+    <insert id="addCartItem" parameterType="pojo.CartItem">
+        insert into cartitem(customerid, proudectid, prodectname, listprice, qty)
+        values (#{customerid}, #{proudectid}, #{prodectname}, #{listprice}, #{qty})
+    </insert>
 
+    <select id="selectByCustomerId" parameterType="int" resultMap="cartItemMap">
+        select *
+        from cartitem
+        where customerid = #{customerId}
+    </select>
 
+    <delete id="deleteCartItem" parameterType="int">
+        delete
+        from cartitem
+        where id = #{id}
+    </delete>
 </mapper>

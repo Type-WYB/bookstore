@@ -5,7 +5,7 @@
 
 
     <select id="getAllProduct" resultType="pojo.Product">
-    select * from product
+        select * from product
     </select>
 
     <select id="getProduct" parameterType="int" resultType="pojo.Product">

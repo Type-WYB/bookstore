@@ -13,6 +13,26 @@ public class CartItem {
     private double listprice;
     private int qty;
 
+    public CartItem() {
+    }
+
+    public CartItem(int customerid, int proudectid, String prodectname, double listprice, int qty) {
+        this.customerid = customerid;
+        this.proudectid = proudectid;
+        this.prodectname = prodectname;
+        this.listprice = listprice;
+        this.qty = qty;
+    }
+
+    public CartItem(int id, int customerid, int proudectid, String prodectname, double listprice, int qty) {
+        this.id = id;
+        this.customerid = customerid;
+        this.proudectid = proudectid;
+        this.prodectname = prodectname;
+        this.listprice = listprice;
+        this.qty = qty;
+    }
+
     public int getId() {
         return id;
     }

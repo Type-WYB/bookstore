@@ -18,17 +18,19 @@
     </header>
 
     <div id="right-content">
+        <input type="text" hidden="hidden" :value="book.id" id="book-id">
         <div class="wrapper first-wrapper" id="wrapper">
             <img :src="['/images/home/book/'+book.image]" id="img1" class="book-img"/>
         </div>
         <div class="book-info">
             <div class="title">
-                <p><span class="book-name">{{book.name}}</span><span class="book-price">{{book.listprice}}元</span></p>
+                <p><span class="book-name" id="book-name">{{book.name}}</span><span class="book-price" id="book-price">{{book.listprice}}</span>元
+                </p>
                 <p class="font-style"><a href="home.html">书虫自营</a></p>
             </div>
             <div class="cart">
                 <span>购买数量：</span>
-                <input type="text" class="number_choose" v-model="value1"/>
+                <input type="text" class="number_choose" v-model="buy_count"/>
                 <button @click="resCart()" class="add-button">加入购物车</button>
                 <button @click="resHome()" class="return-button">返回</button>
             </div>
@@ -46,7 +48,7 @@
     new Vue({
         el: '#book_detail',
         data: {
-            value1: 1,
+            buy_count: 1,
             value5: '',
             book: {},
         },
@@ -63,7 +65,21 @@
                 location.href = "home.html";
             },
             resCart() {
-                location.href = "cart.html";
+                var postdata = JSON.stringify({
+                    product_id: $('#book-id').val(),
+                    product_name: $('#book-name').text(),
+                    product_price: $('#book-price').text(),
+                    buy_count: this.buy_count
+                });
+                axios.post('/cartItem/addCartItem', postdata, {headers: {'Content-Type': 'application/json;charset=UTF-8'}}).then(function (res) {
+                    if (res.data.code === 1) {
+                       window.location.href="cart.html";
+                    } else {
+                        alert(res.data.msg);
+                    }
+                }).catch(function (reason) {
+                    console.log(reason);
+                });
             }
 
         }
