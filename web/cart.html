@@ -3,76 +3,127 @@
 <head>
     <meta charset="utf-8">
     <title>购物车</title>
-    <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
     <script src="js/head.js"></script>
-    <script src="js/vue.min.js"></script>
-    <script src="js/axios.min.js"></script>
+    <style type="text/css">
+        .left-btn {
+            margin: 20px 20px 100px 370px;
+        }
+
+        .right-btn {
+            margin: 20px 5px 100px 500px;
+        }
+    </style>
 </head>
 <body>
-<div id="cartitem">
-    <table>
-        <tr>
-            <th>序号</th>
-            <th>商品</th>
-            <th>单价</th>
-            <th>数量</th>
-            <th>小计</th>
-            <th>操作</th>
-        </tr>
-        <tr v-for="(value,key) in cartItemList">
-            <td>{{key+1}}</td>
-            <td>{{cartItemList[key].prodectname}}</td>
-            <td>{{cartItemList[key].listprice}}</td>
-            <td>{{cartItemList[key].qty}}</td>
-            <td>{{cartItemList[key].listprice*cartItemList[key].qty}}</td>
-            <td>
-                <button :data-id="cartItemList[key].id" @click="deleteCart(cartItemList[key].id)">删除</button>
-            </td>
-        </tr>
-    </table>
-    <button @click="toHome()">继续购物</button>
-    <button @click="toPay()">立即购买</button>
+<div id="cart_app">
+
+    <div style="background:#eee;padding: 20px">
+        <Card :bordered="false">
+            <p slot="title">购物车</p>
+            <Steps :current="2">
+                <Step title="浏览商品" content=""></Step>
+                <Step title="添加至购物车" content=""></Step>
+                <Step title="立即购买" content=""></Step>
+                <Step title="支付完成" content=""></Step>
+            </Steps>
+            <br/>
+            <i-table show-summary :columns="columns7" :data="data6" height="350"></i-table>
+            <i-button type="warning" class="left-btn" @click="resHome()">继续购物</i-button>
+            <i-button type="success" class="right-btn">立即购买</i-button>
+        </Card>
+    </div>
 </div>
 <script>
     new Vue({
-        el: '#cartitem',
-        data: {
-            cartItemList: [],
-        },
-        mounted() {
-            var _this = this;
-            axios.get("/cartItem/getCartItems").then(function (res) {
-                console.log(res.data.data);
-                _this.cartItemList = res.data.data;
-            }).catch(function (reason) {
-                console.log(reason);
-            })
+        el: '#cart_app',
+        data() {
+            return {
+                value1: 1,
+                columns7: [{
+                    title: '序号',
+                    type: 'index',
+                    width: 80,
+                    align: 'center'
+                },
+                    {
+                        title: '商品',
+                        key: 'goods',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Icon', {
+                                    props: {
+                                        type: 'person'
+                                    }
+                                }),
+                                h('strong', params.row.goods)
+                            ]);
+                        }
+                    },
+                    {
+                        title: '单价',
+                        key: 'singlePrice'
+                    },
+                    {
+                        title: '数量',
+                        key: 'number',
+                        type: 'text'
+                    },
+                    {
+                        title: '小计',
+                        key: 'subtotal'
+                    },
+                    {
+                        title: '操作',
+                        key: 'action',
+                        width: 150,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'error',
+                                        size: 'small'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.remove(params.index)
+                                        }
+                                    }
+                                }, '删除')
+                            ]);
+                        }
+                    }
+                ],
+                data6: [{
+                    goods: 'JS',
+                    singlePrice: 20,
+                    number: 1,
+                    subtotal: 20
+                },{
+                        date: 'JS',
+                        singlePrice: 5,
+                        number: 1,
+                        subtotal: 20
+                    }
+                ]
+            }
         },
         methods: {
-            // 删除购物车中的商品
-            deleteCart(id) {
-                var b = confirm("是否要从购物车中删除该商品？");
-                if (b) {
-                    axios.get("/cartItem/deleteCartItem?id=" + id).then(function (res) {
-                        if (res.data.code === 0) {
-                            alert(res.data.msg);
-                        } else {
-                            window.location.href = "cart.html";
-                        }
-                    }).catch(function (reason) {
-                        console.log(reason);
-                    })
-                }
+            show(index) {
+                this.$Modal.info({
+                    title: '消息',
+                    content: `时间：${this.data6[index].date}<br>呢称：${this.data6[index].name}<br>内容：${this.data6[index].content}`
+                })
             },
-            // 跳转到主页，购物页面
-            toHome() {
-                window.location.href = "home.html";
+            remove(index) {
+                this.data6.splice(index, 1);
             },
-            // 提交订单
-            toPay() {
-                alert("暂无功能！");
+            resHome() {
+                location.href = "home.html";
             }
+
         }
+
     })
 </script>
 </body>

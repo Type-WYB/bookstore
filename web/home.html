@@ -4,73 +4,360 @@
     <meta charset="utf-8">
     <title>书虫</title>
     <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
-    <link href="images/favicon.ico" type="image/x-icon" rel="icon"/><!-- 图标 -->
-    <script src="js/head.js"></script>
-    <link rel="stylesheet" href="css/home.css">
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/><!-- Animation库 -->
+    <link href="css/normalize.css-4.0.0/normalize.css" rel="stylesheet" type="text/css"/><!-- Css重置 -->
+    <link href="css/iview.css" rel="stylesheet" type="text/css"/><!-- iview组件库 -->
+    <link href="favicon.ico" type="image/x-icon" rel="icon"/>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script><!-- jquery库 -->
+    <script src="http://www.zhangxinxu.com/study/js/mini/prefixfree.min.js" type="text/javascript"
+            charset="utf-8"></script><!-- 解决前缀问题 -->
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/iview.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css" scoped>
+        .layout {
+            border: 1px solid #d7dde4;
+            background: #f5f7f9;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .layout-logo {
+            width: 100px;
+            height: 30px;
+            background: #5b6270;
+            border-radius: 3px;
+            float: left;
+            position: relative;
+            top: 15px;
+            left: 20px;
+        }
+
+        .layout-nav {
+            width: auto;
+            margin-right: 20px;
+        }
+
+        .layout-footer-center {
+            text-align: center;
+        }
+
+        .aside-ul .div2 {
+            width: 97px;
+            height: 320px;
+            background: skyblue;
+            position: absolute;
+            top: 23px;
+            left: 138px;
+            display: none;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .aside-ul li:hover .div2 {
+            display: block;
+            background: #CC6600;
+            width: 60px;
+            height: 300px;
+            transition: .5s;
+        }
+
+        .aside-ul {
+            list-style: none;
+            padding: 20px 0px;
+            width: 234px;
+            background: #CCCC66;
+
+            height: 300px;
+        }
+
+        .aside-ul li {
+            height: 42px;
+            line-height: -1px;
+            padding-left: 65px;
+
+        }
+
+        .aside-ul li:hover {
+            background: #CC6600;
+        }
+
+        .aside-ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .book-img {
+            max-width: 100%;
+            height: 100px;
+            z-index: 1;
+            position: absolute;
+            margin: 30px auto auto 33px;
+        }
+
+        .wrapper {
+            height: 220px;
+            width: 159px;
+            background: #FFFFFF;
+            float: left;
+        }
+
+        .wrapper:hover {
+            box-shadow: 0 0 5px 5px #F0F0F0;
+            transform: translate3d(0, -2px, 4px);
+            transition: .3s;
+        }
+
+        body {
+            background: #F5F5F5;
+        }
+
+        .head {
+            list-style: none;
+            margin-left: 70%;
+        }
+
+        .head-a {
+            text-decoration: none;
+            color: white;
+
+        }
+
+
+        .head-li {
+            width: 100px;
+            float: left;
+        }
+
+        .header-style {
+            width: 100%;
+            height: 20px;
+            background: #CCCC66;
+        }
+
+        .nav-li {
+            float: left;
+            width: 129px;
+            color: #F35626;
+            display: block;
+            text-align: center;
+            line-height: 7px;
+            margin-left: 175px;
+        }
+
+        .nav-a {
+            display: block;
+            text-decoration: none;
+            color: #660033;
+        }
+
+
+        .inner-ul {
+            display: none;
+            margin: -16px auto auto -103px;
+            background: white solid;
+            width: 200px;
+            height: 50px;
+            float: center;
+        }
+
+        .nav-li:hover ul {
+            display: block;
+
+
+        }
+
+        .bg {
+            margin: 7px auto auto 179px;
+        }
+
+        .logo1 {
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+
+        }
+
+        .first-wrapper {
+            margin-left: 184px;
+        }
+
+        .next-wrapper {
+            margin-left: 57px;
+        }
+
+        .line-wrapper {
+            margin-top: 20px;
+
+        }
+
+        .blank-line {
+            width: 180px;
+            height: 504px;
+            margin-left: 172px;
+            margin-top: 10px;
+
+        }
+
+        .blank-photo {
+            width: 772px;
+            height: 82px;
+        }
+
+        .foot {
+            width: 100%;
+            height: 100px;
+            background: #CCCC66;
+
+        }
+
+        .foot-img {
+            height: 70px;
+            width: 70px;
+            margin-top: 10px;
+            font: white;
+            border-radius: 50px;
+
+        }
+
+        .foot-sp {
+            text-decoration: none;
+            color: black;
+
+
+        }
+
+        .foot-span {
+            margin: 120px auto auto 20px;
+        }
+
+        .up {
+            font-size: 30px;
+            float: right;
+            margin-right: 0;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #CCCC66;
+            text-align: center;
+            background: #CCCC66;
+
+        }
+
+        .up-ft {
+            color: #660033;
+            text-decoration: none;
+        }
+
+        .d1 {
+            margin-top: 140px;
+            text-align: center;
+            color: #CC6600;
+
+        }
+
+        .search {
+            width: 235px;
+        }
+
+        .transform-img {
+            width: 800px;
+            height: 300px;
+            margin: -300px auto auto 233px;
+        }
+
+        .head-theme {
+            background: #CCCC66;
+        }
+
+        .lay-logo {
+            top: -10px;
+            float: left;
+            margin-left: 50px;
+        }
+
+        .left-li {
+            padding: 10px;
+        }
+
+        .head-border {
+            margin-left: 179px;
+            width: 1200px;
+        }
+        .nodisplay{
+           display: none;
+        }
+    </style>
 </head>
 <body>
 <div id="home_app">
     <div class="layout">
         <Layout>
+
             <Header>
                 <i-menu mode="horizontal" active-name="1" class="head-theme">
-                    <div class="lay-logo"><img src="images/home/logo_main.jpg" class="logo1"/></div>
+                    <div class="lay-logo"><img src="images/home/logo_main.jpg" class="logo1"></img></div>
                     <div class="layout-nav">
                         <menu-item name="1">
                             <Icon type="ios-navigate"></Icon>
-                            <a @click='loginhandle()' class="head-a">
+                            <a  @click='loginhandle()' class="head-a">
                                 {{name}}</a>
                         </menu-item>
                         <menu-item name="2">
                             <Icon type="ios-keypad"></Icon>
-                            <a href="javascript:;" @click="logout()" class="head-a">退出</a>
+                            <a @click='btn2handle()' class="head-a">
+                                {{btn2}}</a>
                         </menu-item>
-                        <menu-item name="3">
+                        <menu-item name="3" >
                             <Icon type="ios-analytics"></Icon>
-                            <a href="message.html" class="head-a">
+                            <a href="#" class="head-a">
                                 消息通知
                             </a>
                         </menu-item>
-                        <menu-item name="4">
+
+                        <menu-item name="4" v-bind:style="{display:d}">
                             <Icon type="ios-paper"></Icon>
-                            <a href="cart.html" class="head-a">
+                            <a href="/cart.html" class="head-a">
                                 购物车
                             </a>
                         </menu-item>
-                        <menu-item name="4">
-                            <Icon type="md-checkbox"></Icon>
-                            <a href="cart.html" class="head-a">
+
+                        <menu-item name="5" v-bind:style="{display:d}">
+                            <Icon type="ios-paper"></Icon>
+                            <a href="#" class="head-a">
                                 订单
                             </a>
                         </menu-item>
+
                     </div>
                 </i-menu>
             </Header>
+
+
             <i-content :style="{padding: '0 50px'}">
                 <i-breadcrumb :style="{margin: '20px 50px'}">
                     <ul>
                         <breadcrumb-item>
-                            <li class="nav-li"><span class="nav-a">名著</span>
-                                <ul class="inner-ul" id="inner-ul1">
-                                    <li style="list-style: none;"><a href="westjourney_book.html"><img
-                                            src="./images/home/book/mz%20(3).jpeg" class="book-img"/></a></li>
+                            <li class="nav-li"><a href="#" class="nav-a">名著</a>
+                                <ul class="inner-ul" id="inner-ul">
+                                    <li style="list-style: none;"><a href="#"><img
+                                            src="./images/home/book/mz%20(3).jpeg" class="book-img"></img></a></li>
                                 </ul>
                             </li>
                         </breadcrumb-item>
                         <breadcrumb-item>
-                            <li class="nav-li"><span class="nav-a">教辅</span>
-                                <ul class="inner-ul" id="inner-ul2">
-                                    <li style="list-style: none;"><a href="first_Chinese.html"><img
-                                            src="images/home/book/xmjys.jpeg" class="book-img"/></a></li>
+                            <li class="nav-li"><a href="#" class="nav-a">教辅</a>
+                                <ul class="inner-ul" id="inner-ul">
+                                    <li style="list-style: none;"><a href="#"><img src="images/home/book/xx.jpeg"
+                                                                                   class="book-img"></img></a></li>
                                 </ul>
                             </li>
                         </breadcrumb-item>
                         <breadcrumb-item>
-                            <li class="nav-li"><span class="nav-a">其他</span>
-                                <ul class="inner-ul" id="inner-ul3">
-                                    <li style="list-style: none;"><a href="ordinaryworld_book.html"><img
-                                            src="images/home/book/xyj.jpeg"
-                                            class="book-img"/></a></li>
+                            <li class="nav-li"><a href="#" class="nav-a">其他</a>
+                                <ul class="inner-ul" id="inner-ul">
+                                    <li style="list-style: none;"><a href="#"><img src="images/home/book/qt%20(14).jpeg"
+                                                                                   class="book-img"></img></a></li>
                                 </ul>
                             </li>
                         </breadcrumb-item>
@@ -89,42 +376,42 @@
                                     <li class="left-li">
                                         <a href="#">小&nbsp;&nbsp;学</a>
                                         <div class="div2">
-                                            <p><a href="book_type.html?type=小学语文">语&nbsp;文</a></p>
-                                            <p><a href="book_type.html?type=小学数学">数&nbsp;学</a></p>
+                                            <p><a href="#">语&nbsp;文</a></p>
+                                            <p><a href="#">数&nbsp;学</a></p>
                                         </div>
                                     </li>
 
                                     <li class="left-li">
                                         <a href="#">初&nbsp;&nbsp;中</a>
                                         <div class="div2">
-                                            <p><a href="book_type.html?type=初中语文">语&nbsp;文</a></p>
-                                            <p><a href="book_type.html?type=初中数学">数&nbsp;学</a></p>
+                                            <p><a href="#">语&nbsp;文</a></p>
+                                            <p><a href="#">数&nbsp;学</a></p>
                                         </div>
                                     </li>
 
                                     <li class="left-li">
                                         <a href="#">高&nbsp;&nbsp;中</a>
                                         <div class="div2">
-                                            <p><a href="book_type.html?type=高中语文">语&nbsp;文</a></p>
-                                            <p><a href="book_type.html?type=高中语文">数&nbsp;学</a></p>
+                                            <p><a href="#">语&nbsp;文</a></p>
+                                            <p><a href="#">数&nbsp;学</a></p>
                                         </div>
                                     </li>
                                     <li class="left-li">
-                                        <a href="book_type.html?type=大学">大&nbsp;&nbsp;学</a>
+                                        <a href="#">大&nbsp;&nbsp;学</a>
                                     </li>
                                     <li class="left-li">
-                                        <a href="book_type.html?type=其他">其&nbsp;&nbsp;他</a>
+                                        <a href="#">其&nbsp;&nbsp;他</a>
                                     </li>
                                 </ul>
                             </aside>
                             <!-- 轮播图 -->
                             <Carousel autoplay v-model="value2" loop class="transform-img" autoplay-speed="3000">
                                 <carousel-item>
-                                    <div class="demo-carousel "><img src="images/home/book/czjnjyw.jpeg" height="300px"
+                                    <div class="demo-carousel "><img src="images/home/book/cz.jpeg" height="300px"
                                                                      width="800px"/></div>
                                 </carousel-item>
                                 <carousel-item>
-                                    <div class="demo-carousel"><img src="images/home/book/xmjys.jpeg" height="300px"
+                                    <div class="demo-carousel"><img src="images/home/book/mz%20(4).jpeg" height="300px"
                                                                     width="800px"/></div>
                                 </carousel-item>
                                 <carousel-item>
@@ -132,11 +419,11 @@
                                                                     width="800px"/></div>
                                 </carousel-item>
                                 <carousel-item>
-                                    <div class="demo-carousel"><img src="images/home/book/fzjqbtzy.jpeg" height="300px"
+                                    <div class="demo-carousel"><img src="images/home/book/qt%20(10).jpeg" height="300px"
                                                                     width="800px"/></div>
                                 </carousel-item>
                                 <carousel-item>
-                                    <div class="demo-carousel"><img src="images/home/book/gzyw.jpeg" height="300px"
+                                    <div class="demo-carousel"><img src="images/home/book/gz.jpeg" height="300px"
                                                                     width="800px"/></div>
                                 </carousel-item>
                             </Carousel>
@@ -144,26 +431,20 @@
 
                         <!-- 图书方块 -->
                         <div>
-                            <div v-for="(value,key) in bookList">
-                                <a :href="['/book-detail.html?id='+bookList[key].id]">
-                                    <div class="wrapper next-wrapper">
-                                        <img :src="['/images/home/book/'+bookList[key].image]" :alt="bookList[key].name"
-                                             class="book-img">
-                                        <p class="d1"><span class="book-name">{{bookList[key].name}}</span><span
-                                                class="book-price">{{bookList[key].listprice}}</span>
-                                        </p>
-                                    </div>
-                                </a>
+                            <br/>
+
+                        <a v-bind="{href:'productinfo.jsp?id='+item.id}"  :key='item.id' v-for='item in books'>
+                            <div class="wrapper next-wrapper line-wrapper" id="wrapper">&nbsp;&nbsp;
+                                <img :src="item.image" :id="item.id" class="book-img"/>
+                                <p class="d1">{{item.name}}<br/>{{item.listprice}}元</p>
                             </div>
+                        </a>
                         </div>
-                        <div>
-                            <div>
-                                <back-top :bottom="400"></back-top>
-                            </div>
-                            <div class="head-border">
-                                <img src="images/home/logo10.png" class="line-wrapper"/>
-                                <img src="images/home/blank-photo.png" class="blank-photo"/>
-                            </div>
+
+
+                        <div class="up"><a href="#" class="up-ft">↑</a></div>
+                        <div class="head-border"><img src="images/home/logo10.png" class="line-wrapper"/>
+                            <img src="images/home/blank-photo.png" class="blank-photo"/>
                         </div>
                     </div>
                 </Card>
@@ -177,50 +458,67 @@
 						</span></Footer>
         </Layout>
     </div>
+
 </div>
 <script>
     new Vue({
         el: '#home_app',
-        data: {
-            name: "登录",
-            value2: 0,
-            books: [],
-            bookList: {}
+        data() {
+            return {
+                name:"登录",
+                d:"none",
+                value2: 0,
+                books: [],
+                btn2:"注册"
+            }
         },
-        mounted() {
-            var _this = this;
-            axios.get("/customer/getSession").then(function (res) {
-                if (res.data.code === 1) {
-                    _this.name=res.data.data.name;
-                } else {
-                    _this.name = "登录";
-                    window.location.href = "login.html";
-                }
-            });
-            // 初始化课程表格数据
-            axios.get("/product/homeProduct").then(function (res) {
-                _this.bookList = res.data.data;
-            }).catch(function (reason) {
-                console.log(reason);
-            });
+        created(){
 
+            axios({
+                url:"http://localhost/login/getsession",
+                method:"POST",
+            }).then(res=>{
+                var name=res.data.name;
+            if(name==""){
+            }
+            else
+            {this.name=name;this.btn2="退出";this.d="";}
+        });
+
+            axios({
+                url:"http://localhost/product/homeProduct",
+                method:"POST",
+            }).then(res=>{
+                var json=res.data;
+                this.books=json;
+        });
         },
-        methods: {
-            loginhandle() {
-                if (this.name === "登录") {
-                    location.href = "login.html";
-                }
+        methods:{
+            loginhandle(){
+           if(this.name=="登录"){
+               location.href = "login.html";
+           }else {
+               location.href = "detail.html";
+           }
             },
-            logout() {
-                axios.get("/customer/logout").then(function (res) {
-                    if (res.data.code === 1) {
-                        window.location.href = "first.html";
-                    } else {
-                        window.location.href = "home.html";
+            btn2handle(){
+                if(this.btn2=="注册"){
+                    location.href = "regist.html";
+                }else {
+                    axios({
+                        url:"http://localhost/login/exit",
+                        method:"GET",
+                    }).then((res) => {
+                        if(res.data.is==true){
+                            alert("退出成功！");
+                            location.reload();
+                    }else{
+                        alert("退出失败！");
+                        location.reload();
                     }
-                }).catch(function (reason) {
-                    console.log(reason);
-                })
+                });
+
+                }
             }
         }
     })

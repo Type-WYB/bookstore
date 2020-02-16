@@ -14,13 +14,23 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerMapper customerMapper;
 
     @Override
-    public Customer login(Customer customer) {
-        return customerMapper.login(customer);
+    public Customer getCustomerById(int id) {
+        return customerMapper.selectById(id);
     }
 
     @Override
-    public boolean register(Customer customer) {
-        return customerMapper.register(customer);
+    public boolean login(String name, String pwd) {
+        Customer c= customerMapper.isMatch(name,pwd);
+        if(c!=null)
+        return true;
+        else
+        return false;
     }
+
+    @Override
+    public int getIdByName(String name) {
+        return customerMapper.getIdByName(name);
+    }
+
 
 }

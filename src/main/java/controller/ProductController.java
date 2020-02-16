@@ -1,15 +1,19 @@
 package controller;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import pojo.Category;
-import pojo.ResultInfo;
-import serviceimpl.CategoryServiceImpl;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+import pojo.Product;
+import service.ProductService;
 import serviceimpl.ProductServiceImpl;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author 王益波
@@ -22,25 +26,17 @@ public class ProductController {
 
     @Resource
     ProductServiceImpl productServiceImpl;
-    @Resource
-    CategoryServiceImpl categoryServiceImpl;
 
-    @RequestMapping("/homeProduct")
+    @RequestMapping(value = "/homeProduct",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    ResultInfo homeProduct() {
-        return new ResultInfo(1, "首页书籍信息", "home.html", productServiceImpl.getHomeProduct());
+    List<Product> homeProduct(){
+        return productServiceImpl.getHomeProduct();
+    }
+    @RequestMapping(value = "/productinfo",method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    Product productInfo(@RequestParam("id") int id){
+        return productServiceImpl.getProById(id);
+
     }
 
-    @RequestMapping("/getBook")
-    @ResponseBody
-    ResultInfo getBook(@RequestParam String id) {
-        return new ResultInfo(1, "书籍详细信息", "book-detail.html", productServiceImpl.getProduct(Integer.parseInt(id)));
-    }
-
-    @RequestMapping("/getProductByCategory")
-    @ResponseBody
-    ResultInfo getProductByCategory(@RequestParam String type) {
-        Category category = categoryServiceImpl.selectByName(type);
-        return new ResultInfo(1, "通过商品分类查询商品信息", "book_type.html", productServiceImpl.selectByCategoryId(category.getId()));
-    }
 }

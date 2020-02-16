@@ -4,16 +4,10 @@
 <mapper namespace="mapper.ProductMapper">
 
 
-    <select id="getAllProduct" resultType="pojo.Product">
-        select * from product
-    </select>
-
-    <select id="getProduct" parameterType="int" resultType="pojo.Product">
-        select * from product where id=#{id}
-    </select>
-
-    <select id="selectByCategoryId" parameterType="int" resultType="pojo.Product">
-        select * from product where categoryid=#{categoryId}
-    </select>
-
+<select id="getAllProduct" resultType="product">
+    select * from product
+</select>
+    <select id="getProductById" parameterType="int" resultType="product">
+    select * from product where id=#{id}
+</select>
 </mapper>

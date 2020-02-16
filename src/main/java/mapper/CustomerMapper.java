@@ -1,5 +1,6 @@
 package mapper;
 
+import org.apache.ibatis.annotations.Param;
 import pojo.Customer;
 
 /**
@@ -8,20 +9,10 @@ import pojo.Customer;
  * @date 2020/1/13 17:05
  */
 public interface CustomerMapper {
-
-    /**
-     * 用户登录
-     *
-     * @param customer 登录客户对象
-     * @return 返回查询结果
-     */
-    Customer login(Customer customer);
-
-    /**
-     * 用户注册
-     *
-     * @param customer 注册客户对象
-     * @return 如果注册成功则返回true，否则返回false
-     */
-    boolean register(Customer customer);
+    void saveCustomer(Customer customer);
+    void deleteCustomer(int id);
+    void updateCustomer(Customer customer);
+    Customer selectById(int id);
+    Customer isMatch(@Param("name") String name, @Param("pwd") String pwd);
+    int getIdByName(@Param("name") String name);
 }
