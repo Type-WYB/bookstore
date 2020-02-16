@@ -14,4 +14,5 @@ public interface CustomerMapper {
     void updateCustomer(Customer customer);
     Customer selectById(int id);
     Customer isMatch(@Param("name") String name, @Param("pwd") String pwd);
+    int getIdByName(@Param("name") String name);
 }

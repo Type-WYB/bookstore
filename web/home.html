@@ -317,7 +317,7 @@
 
                         <menu-item name="4" v-bind:style="{display:d}">
                             <Icon type="ios-paper"></Icon>
-                            <a href="#" class="head-a">
+                            <a href="/cart.html" class="head-a">
                                 购物车
                             </a>
                         </menu-item>
@@ -508,7 +508,15 @@
                     axios({
                         url:"http://localhost/login/exit",
                         method:"GET",
-                    }).then(function (value) { location.reload(); });
+                    }).then((res) => {
+                        if(res.data.is==true){
+                            alert("退出成功！");
+                            location.reload();
+                    }else{
+                        alert("退出失败！");
+                        location.reload();
+                    }
+                });
 
                 }
             }

@@ -1,5 +1,6 @@
 package service;
 
+import pojo.CartItem;
 import pojo.Product;
 
 import java.util.List;

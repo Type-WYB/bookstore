@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import pojo.Customer;
+import pojo.Msg;
 import serviceimpl.CustomerServiceImpl;
 
 import javax.annotation.Resource;
@@ -25,6 +26,7 @@ public class LoginController {
     ModelAndView login(@RequestBody Map<String, String> map, HttpSession session){
         boolean is=customerServiceImpl.login(map.get("customername"),map.get("password"));
         if(is) session.setAttribute("name",map.get("customername"));
+        if(is) session.setAttribute("id",customerServiceImpl.getIdByName(map.get("customername")));
         Map<String, Boolean> valid = new HashMap<>();
         valid.put("valid", is);
         return new ModelAndView(new MappingJackson2JsonView(), valid);
@@ -43,9 +45,13 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/exit",method = RequestMethod.GET)
-    String exit(HttpSession session){
+    @ResponseBody
+    Msg exit(HttpSession session){
+        Msg msg=new Msg(false,"");
+        if(session.getAttribute("id")==null) return msg;
       session.invalidate();
-        return "home";
+      msg.setIs(true);
+        return msg;
     }
 }
 

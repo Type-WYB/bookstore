@@ -3,6 +3,7 @@ package serviceimpl;
 import mapper.CustomerMapper;
 import mapper.ProductMapper;
 import org.springframework.stereotype.Service;
+import pojo.CartItem;
 import pojo.Product;
 import service.ProductService;
 
@@ -38,4 +39,5 @@ public class ProductServiceImpl implements ProductService {
         if(p!=null) p.setUnitcost(-1);
         return p;
     }
+
 }

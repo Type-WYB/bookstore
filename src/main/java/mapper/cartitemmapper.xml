@@ -3,6 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.CartItemMapper">
 
-
+<insert id="add" parameterType="CartItem" flushCache="true">
+    INSERT INTO cartitem (customerid,proudectid,prodectname,listprice,qty
+    ) VALUES (#{customerid},#{proudectid},#{prodectname},#{listprice},#{qty})
+ </insert>
 
 </mapper>

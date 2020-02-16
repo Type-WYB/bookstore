@@ -27,5 +27,10 @@ public class CustomerServiceImpl implements CustomerService {
         return false;
     }
 
+    @Override
+    public int getIdByName(String name) {
+        return customerMapper.getIdByName(name);
+    }
+
 
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{{bookinfo.name}}</title>
+    <title>商品详情</title>
     <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/head.js"></script>
     <style type="text/css">
@@ -227,10 +227,16 @@
             },
             resCart() {
                 axios({
-                    url:"http://localhost/product/productinfo?id="+this.id,
-                    method:"GET"
+                    url:"http://localhost/MyCart/add",
+                    method:"POST",
+                    data:{qty:this.value1,book:this.bookinfo}
                 }).then(res=>{
-                    this.bookinfo=res.data;
+                    if(res.data.is==true)
+                        alert("添加成功！");
+                    else
+                        if(res.data.code==1) alert("未登录 或者参数补齐！");
+
+
             });
             }
 
