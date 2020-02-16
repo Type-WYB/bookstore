@@ -3,7 +3,47 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.OrderMapper">
 
+    <select id="selectAll" resultType="pojo.Order">
+        select *
+        from 'order';
+    </select>
 
+    <select id="selectById" resultType="pojo.Order" parameterType="int">
+        select *
+        from 'order'
+        where id = #{id}
+    </select>
 
+    <select id="selectByCustomerId" resultType="pojo.Order" parameterType="int">
+        select *
+        from 'order'
+        where customerid = #{customerId}
+    </select>
 
+    <insert id="addOrder" parameterType="pojo.Order">
+        insert into 'order'(customerid, username, orderdate, addr1, city, state, zip, phone)
+        values (#{customerid},#{username},#{orderdate},#{addr1},#{city},#{state},#{zip},#{phone})
+        <selectKey keyColumn="id" resultType="integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <delete id="deleteOrder" parameterType="int">
+        delete
+        from 'order'
+        where id = #{id}
+    </delete>
+
+    <update id="updateOrder" parameterType="pojo.Order">
+        update 'order'
+        set customerid=#{customerid},
+            username=#{username},
+            orderdate=#{orderdate},
+            addr1=#{addr1},
+            city=#{city},
+            state=#{state},
+            zip=#{zip},
+            phone=#{phone}
+        where id = #{id}
+    </update>
 </mapper>

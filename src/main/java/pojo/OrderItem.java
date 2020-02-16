@@ -13,6 +13,21 @@ public class OrderItem {
     private int qty;
     private double totalprice;
 
+    public OrderItem(int orderid, String productname, double listprice, int qty, double totalprice) {
+        this.orderid = orderid;
+        this.productname = productname;
+        this.listprice = listprice;
+        this.qty = qty;
+        this.totalprice = totalprice;
+    }
+
+    public OrderItem(String productname, double listprice, int qty, double totalprice) {
+        this.productname = productname;
+        this.listprice = listprice;
+        this.qty = qty;
+        this.totalprice = totalprice;
+    }
+
     public int getId() {
         return id;
     }

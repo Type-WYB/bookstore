@@ -19,6 +19,6 @@ public class CartItemServiceImpl implements CartItemSerice {
 
     @Override
     public void add(CartItem cartItem) {
-           cartitemMapper.add(cartItem);
+//           cartitemMapper.add(cartItem);
     }
 }

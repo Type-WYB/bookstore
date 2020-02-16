@@ -3,7 +3,47 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.OrderItemMapper">
 
-
-
+    <select id="selectAll" resultType="pojo.OrderItem">
+        select *
+        from orderitem;
+    </select>
+    <select id="selectById" resultType="pojo.OrderItem">
+        select *
+        from orderitem
+        where id = #{id}
+    </select>
+    <select id="selectByOrderId" resultType="pojo.OrderItem">
+        select *
+        from orderitem
+        where orderid = #{orderId}
+    </select>
+    <select id="selectTotalPriceByOrderId" resultType="java.lang.Integer">
+        select totalprice
+        from orderitem
+        where orderid = #{orderId}
+    </select>
+    <insert id="addOrderItem">
+        insert into orderitem(orderid, productname, listprice, qty, totalprice)
+        VALUES (#{orderid}, #{productname}, #{listprice}, #{qty}, #{totalprice})
+    </insert>
+    <update id="updateOrderItem">
+        update orderitem
+        set orderid=#{orderid},
+            productname=#{productname},
+            listprice=#{listprice},
+            qty=#{qty},
+            totalprice=#{totalprice}
+        where id = #{id}
+    </update>
+    <delete id="deleteOrderItemById">
+        delete
+        from orderitem
+        where id = #{id}
+    </delete>
+    <delete id="deleteOrderItemByOrderId">
+        delete
+        from orderitem
+        where orderid = #{orderid}
+    </delete>
 
 </mapper>

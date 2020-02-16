@@ -21,10 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean login(String name, String pwd) {
         Customer c= customerMapper.isMatch(name,pwd);
-        if(c!=null)
-        return true;
-        else
-        return false;
+        return c != null;
     }
 
     @Override

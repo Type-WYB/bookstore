@@ -14,6 +14,17 @@ public class Order {
     private String zip;
     private String phone;
 
+    public Order(int customerid, String username, Date orderdate, String addr1, String city, String state, String zip, String phone) {
+        this.customerid = customerid;
+        this.username = username;
+        this.orderdate = orderdate;
+        this.addr1 = addr1;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phone = phone;
+    }
+
     public int getId() {
         return id;
     }
